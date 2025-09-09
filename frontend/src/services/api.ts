@@ -1,6 +1,6 @@
 import { AnalysisResult } from '../types/analysis';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://wordpress-site-health-analyzer.jamesiserman.workers.dev/api';
 
 export class ApiService {
   static async analyzeWebsite(url: string): Promise<AnalysisResult> {

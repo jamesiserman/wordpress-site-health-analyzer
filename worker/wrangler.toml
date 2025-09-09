@@ -1,0 +1,9 @@
+name = "wordpress-site-health-analyzer"
+main = "src/index.ts"
+compatibility_date = "2023-10-25"
+
+[env.production]
+name = "wordpress-site-health-analyzer"
+
+[env.development]
+name = "wordpress-site-health-analyzer-dev"
