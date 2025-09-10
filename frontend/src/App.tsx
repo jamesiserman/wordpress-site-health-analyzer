@@ -1,12 +1,17 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SimpleApp from './components/SimpleApp';
 import AdminPanel from './components/AdminPanel';
 
 function App() {
-  // Check if we're on the admin route
-  const isAdminRoute = window.location.pathname === '/admin';
-  
-  return isAdminRoute ? <AdminPanel /> : <SimpleApp />;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/" element={<SimpleApp />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;
