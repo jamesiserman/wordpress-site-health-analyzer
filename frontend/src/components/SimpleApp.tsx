@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ApiService } from '../services/api';
 import { AnalysisResult } from '../types/analysis';
 
@@ -957,8 +958,8 @@ Comprehensive security, GDPR compliance, and accessibility analysis for marketin
         padding: '40px 20px 20px',
         opacity: '0.3'
       }}>
-        <a 
-          href="/admin"
+        <Link 
+          to="/admin"
           style={{
             color: '#86868b',
             fontSize: '12px',
@@ -969,7 +970,7 @@ Comprehensive security, GDPR compliance, and accessibility analysis for marketin
           onMouseOut={(e) => e.currentTarget.style.opacity = '1'}
         >
           •
-        </a>
+        </Link>
       </div>
     </div>
   );
