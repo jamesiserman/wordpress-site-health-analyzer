@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 interface SearchAnalytic {
   id: number;
@@ -35,11 +35,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ sessionToken, onLogout 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    fetchAnalytics();
-  }, []);
-
-  const fetchAnalytics = async () => {
+  const fetchAnalytics = useCallback(async () => {
     try {
       const response = await fetch('https://wordpress-site-health-analyzer.jamesiserman.workers.dev/api/admin/analytics', {
         headers: {
@@ -64,7 +60,11 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ sessionToken, onLogout 
     } finally {
       setLoading(false);
     }
-  };
+  }, [sessionToken, onLogout]);
+
+  useEffect(() => {
+    fetchAnalytics();
+  }, [fetchAnalytics]);
 
   const handleLogout = async () => {
     try {
