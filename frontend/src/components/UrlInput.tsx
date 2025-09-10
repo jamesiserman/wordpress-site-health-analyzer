@@ -34,9 +34,9 @@ export const UrlInput: React.FC<UrlInputProps> = ({ onAnalyze, isLoading }) => {
         <div className="flex items-center justify-center mb-4">
           <Globe className="h-12 w-12 text-primary" />
         </div>
-        <CardTitle className="text-3xl font-bold">WordPress Site Health Analyzer</CardTitle>
+        <CardTitle className="text-3xl font-bold">SitePulse</CardTitle>
         <CardDescription className="text-lg">
-          Analyze your WordPress site for security vulnerabilities, GDPR compliance, and accessibility issues
+          Analyze your website for security vulnerabilities, GDPR compliance, and accessibility issues
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -80,7 +80,7 @@ export const UrlInput: React.FC<UrlInputProps> = ({ onAnalyze, isLoading }) => {
         <div className="mt-6 text-sm text-muted-foreground">
           <h4 className="font-medium mb-2">What we analyze:</h4>
           <ul className="space-y-1">
-            <li>• Security: WordPress version, plugins, themes, and known vulnerabilities</li>
+            <li>• Security: SSL certificates, security headers, and known vulnerabilities</li>
             <li>• GDPR: Cookie banners, privacy policies, and tracking scripts</li>
             <li>• Accessibility: Alt text, heading structure, and ARIA labels</li>
           </ul>

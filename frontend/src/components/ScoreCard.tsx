@@ -86,22 +86,25 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({ analysis }) => {
             </div>
             <Progress value={analysis.categoryScores.security} className="h-2" />
             <div className="mt-3 space-y-1 text-sm">
-              {analysis.security.isWordPress ? (
-                <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1">
+                {analysis.security.sslCertificate.isValid ? (
                   <CheckCircle className="h-3 w-3 text-green-500" />
-                  WordPress detected
-                </div>
-              ) : (
-                <div className="flex items-center gap-1">
+                ) : (
                   <XCircle className="h-3 w-3 text-red-500" />
-                  WordPress not detected
-                </div>
-              )}
-              {analysis.security.wordpressVersion && (
-                <div className="text-muted-foreground">
-                  Version: {analysis.security.wordpressVersion}
-                </div>
-              )}
+                )}
+                SSL Certificate
+              </div>
+              <div className="flex items-center gap-1">
+                {analysis.security.securityHeaders.score > 15 ? (
+                  <CheckCircle className="h-3 w-3 text-green-500" />
+                ) : (
+                  <XCircle className="h-3 w-3 text-red-500" />
+                )}
+                Security Headers
+              </div>
+              <div className="text-muted-foreground">
+                {analysis.security.consoleWarnings.length} warnings
+              </div>
             </div>
           </CardContent>
         </Card>
