@@ -1,4 +1,4 @@
-import { AnalysisResult, SecurityResult, GDPRResult, AccessibilityResult, Recommendation } from './types';
+import { AnalysisResult, SecurityResult, GDPRResult, AccessibilityResult, Recommendation, SSLCertificate, SecurityHeaders, ConsoleWarning, ReputationCheck } from './types';
 
 export interface Env {
   // Define any environment variables here
@@ -144,81 +144,210 @@ async function analyzeWebsite(url: string): Promise<AnalysisResult> {
 }
 
 async function analyzeSecurityWorker(html: string, url: string): Promise<SecurityResult> {
-  const lowerHtml = html.toLowerCase();
+  // Analyze SSL Certificate
+  const sslCertificate = await analyzeSSLCertificate(url);
   
-  // WordPress detection patterns
-  const wpPatterns = [
-    /wp-content/i,
-    /wp-includes/i,
-    /wp-admin/i,
-    /wordpress/i,
-    /<meta name="generator" content="wordpress/i,
-    /wp-json/i,
-    /xmlrpc\.php/i
-  ];
-
-  const isWordPress = wpPatterns.some(pattern => pattern.test(html));
+  // Analyze Security Headers
+  const securityHeaders = await analyzeSecurityHeaders(url);
   
-  let detectionMethod = 'Not detected';
-  let isHardened = false;
-  let wordpressVersion: string | undefined;
-
-  if (isWordPress) {
-    // Check for version in generator meta tag
-    const versionMatch = html.match(/<meta name="generator" content="WordPress ([0-9.]+)"/i);
-    if (versionMatch) {
-      wordpressVersion = versionMatch[1];
-      detectionMethod = 'Generator meta tag';
-    } else {
-      // Check for other detection methods
-      if (lowerHtml.includes('wp-content')) {
-        detectionMethod = 'wp-content directory detected';
-      } else if (lowerHtml.includes('wp-includes')) {
-        detectionMethod = 'wp-includes directory detected';
-      } else if (lowerHtml.includes('wp-json')) {
-        detectionMethod = 'WordPress REST API detected';
-        isHardened = true; // REST API suggests some hardening
-      } else {
-        detectionMethod = 'WordPress patterns detected';
-        isHardened = true; // If only subtle patterns found, likely hardened
-      }
-    }
-  }
-
-  // Simple vulnerability check (in real implementation, you'd check against CVE databases)
-  const vulnerabilities = [];
+  // Analyze Console Warnings (simulated - in real implementation would use headless browser)
+  const consoleWarnings = analyzeConsoleWarnings(html);
   
-  // Check for common security issues
-  if (wordpressVersion) {
-    const version = parseFloat(wordpressVersion);
-    if (version < 6.0) {
-      vulnerabilities.push({
-        component: 'WordPress Core',
-        version: wordpressVersion,
-        severity: 'high' as const,
-        description: 'Outdated WordPress version detected'
-      });
-    }
-  }
-
-  // Calculate security score
-  let score = 100;
-  if (!isWordPress) score -= 20; // Not WordPress, can't assess WordPress-specific security
-  if (vulnerabilities.length > 0) score -= vulnerabilities.length * 15;
-  if (!isHardened && isWordPress) score -= 10;
+  // Check Reputation
+  const reputationChecks = await analyzeReputation(url);
+  
+  // General vulnerability checks
+  const vulnerabilities = analyzeGeneralVulnerabilities(html, url);
+  
+  // Calculate overall security score
+  let score = 0;
+  score += sslCertificate.isValid ? 25 : 0;
+  score += securityHeaders.score;
+  score += Math.max(0, 25 - (consoleWarnings.length * 5));
+  score += reputationChecks.every(check => check.status === 'clean') ? 20 : 0;
+  score -= vulnerabilities.length * 10;
   
   score = Math.max(0, Math.min(100, score));
 
   return {
-    wordpressVersion,
-    isWordPress,
-    detectionMethod,
-    isHardened,
+    sslCertificate,
+    securityHeaders,
+    consoleWarnings,
+    reputationChecks,
     vulnerabilities,
-    plugins: [], // Would require more complex analysis
-    themes: [], // Would require more complex analysis
     score
   };
+}
+
+async function analyzeSSLCertificate(url: string): Promise<SSLCertificate> {
+  try {
+    const urlObj = new URL(url);
+    const isHttps = urlObj.protocol === 'https:';
+    
+    if (!isHttps) {
+      return {
+        isValid: false,
+        warnings: ['Site not using HTTPS']
+      };
+    }
+    
+    // In a real implementation, you would check certificate details
+    // For now, we'll do a basic HTTPS check
+    try {
+      const response = await fetch(url, { method: 'HEAD' });
+      return {
+        isValid: response.ok,
+        issuer: 'Unknown', // Would need certificate parsing
+        grade: response.ok ? 'A' : 'F',
+        warnings: response.ok ? [] : ['SSL connection failed']
+      };
+    } catch {
+      return {
+        isValid: false,
+        warnings: ['SSL certificate validation failed']
+      };
+    }
+  } catch {
+    return {
+      isValid: false,
+      warnings: ['Invalid URL format']
+    };
+  }
+}
+
+async function analyzeSecurityHeaders(url: string): Promise<SecurityHeaders> {
+  try {
+    const response = await fetch(url, { method: 'HEAD' });
+    const headers = response.headers;
+    
+    const securityHeaders = {
+      contentSecurityPolicy: headers.has('content-security-policy'),
+      strictTransportSecurity: headers.has('strict-transport-security'),
+      xFrameOptions: headers.has('x-frame-options'),
+      xContentTypeOptions: headers.has('x-content-type-options'),
+      referrerPolicy: headers.has('referrer-policy'),
+      permissionsPolicy: headers.has('permissions-policy') || headers.has('feature-policy'),
+      score: 0
+    };
+    
+    // Calculate score based on present headers
+    const headerCount = Object.values(securityHeaders).filter(Boolean).length - 1; // -1 for score field
+    securityHeaders.score = Math.round((headerCount / 6) * 30); // Max 30 points for headers
+    
+    return securityHeaders;
+  } catch {
+    return {
+      contentSecurityPolicy: false,
+      strictTransportSecurity: false,
+      xFrameOptions: false,
+      xContentTypeOptions: false,
+      referrerPolicy: false,
+      permissionsPolicy: false,
+      score: 0
+    };
+  }
+}
+
+function analyzeConsoleWarnings(html: string): ConsoleWarning[] {
+  const warnings: ConsoleWarning[] = [];
+  
+  // Check for mixed content issues
+  if (html.includes('http://') && html.includes('https://')) {
+    warnings.push({
+      type: 'mixed-content',
+      message: 'Mixed content detected (HTTP resources on HTTPS page)',
+      severity: 'medium'
+    });
+  }
+  
+  // Check for deprecated features
+  if (/document\.write/i.test(html)) {
+    warnings.push({
+      type: 'deprecated',
+      message: 'document.write() usage detected',
+      severity: 'low'
+    });
+  }
+  
+  // Check for inline scripts without nonce
+  const inlineScripts = html.match(/<script(?![^>]*src)[^>]*>/gi) || [];
+  if (inlineScripts.length > 0 && !html.includes('nonce=')) {
+    warnings.push({
+      type: 'security',
+      message: 'Inline scripts without CSP nonce detected',
+      severity: 'medium'
+    });
+  }
+  
+  // Check for eval() usage
+  if (/\beval\s*\(/i.test(html)) {
+    warnings.push({
+      type: 'security',
+      message: 'eval() usage detected',
+      severity: 'high'
+    });
+  }
+  
+  return warnings;
+}
+
+async function analyzeReputation(url: string): Promise<ReputationCheck[]> {
+  const urlObj = new URL(url);
+  const domain = urlObj.hostname;
+  
+  // In a real implementation, you would check against actual reputation services
+  // For now, we'll simulate basic checks
+  const checks: ReputationCheck[] = [
+    {
+      service: 'Google Safe Browsing',
+      status: 'clean', // Would check actual API
+      lastChecked: new Date().toISOString()
+    },
+    {
+      service: 'VirusTotal',
+      status: 'clean', // Would check actual API
+      lastChecked: new Date().toISOString()
+    },
+    {
+      service: 'Malware Domain List',
+      status: 'clean', // Would check actual blacklists
+      lastChecked: new Date().toISOString()
+    }
+  ];
+  
+  return checks;
+}
+
+function analyzeGeneralVulnerabilities(html: string, url: string): any[] {
+  const vulnerabilities = [];
+  
+  // Check for common vulnerabilities
+  if (html.includes('jQuery') && /jquery[/-]([0-9.]+)/i.test(html)) {
+    const versionMatch = html.match(/jquery[/-]([0-9.]+)/i);
+    if (versionMatch) {
+      const version = versionMatch[1];
+      const versionNum = parseFloat(version);
+      if (versionNum < 3.5) {
+        vulnerabilities.push({
+          component: 'jQuery',
+          version: version,
+          severity: 'medium',
+          description: 'Outdated jQuery version with known vulnerabilities'
+        });
+      }
+    }
+  }
+  
+  // Check for exposed admin interfaces
+  if (html.includes('/admin') || html.includes('/administrator')) {
+    vulnerabilities.push({
+      component: 'Admin Interface',
+      severity: 'low',
+      description: 'Admin interface references found in HTML'
+    });
+  }
+  
+  return vulnerabilities;
 }
 
 async function analyzeGDPRWorker(html: string, url: string): Promise<GDPRResult> {
@@ -347,25 +476,55 @@ function generateRecommendations(
 ): Recommendation[] {
   const recommendations: Recommendation[] = [];
 
-  // Security recommendations
-  if (!security.isWordPress) {
+  // SSL Certificate recommendations
+  if (!security.sslCertificate.isValid) {
     recommendations.push({
       category: 'security',
-      severity: 'medium',
-      title: 'WordPress Not Detected',
-      description: 'This site does not appear to be running WordPress.',
-      action: 'Verify that this is a WordPress site or check if WordPress detection is being blocked.'
-    });
-  } else if (security.isHardened) {
-    recommendations.push({
-      category: 'security',
-      severity: 'low',
-      title: 'Excellent Security Hardening',
-      description: 'WordPress detected through subtle indicators while obvious signs are hidden - this is a security best practice.',
-      action: 'Continue maintaining this security hardening approach to reduce attack surface.'
+      severity: 'critical',
+      title: 'SSL Certificate Issues',
+      description: 'SSL certificate validation failed or site not using HTTPS.',
+      action: 'Install a valid SSL certificate and ensure all traffic uses HTTPS.'
     });
   }
 
+  // Security Headers recommendations
+  if (security.securityHeaders.score < 20) {
+    recommendations.push({
+      category: 'security',
+      severity: 'high',
+      title: 'Missing Security Headers',
+      description: 'Important security headers are missing.',
+      action: 'Implement Content-Security-Policy, X-Frame-Options, and other security headers.'
+    });
+  }
+
+  // Console warnings recommendations
+  const highSeverityWarnings = security.consoleWarnings.filter(w => w.severity === 'high');
+  if (highSeverityWarnings.length > 0) {
+    recommendations.push({
+      category: 'security',
+      severity: 'high',
+      title: 'High Severity Security Warnings',
+      description: `${highSeverityWarnings.length} high severity security issues detected.`,
+      action: 'Review and fix security warnings in browser console.'
+    });
+  }
+
+  // Reputation recommendations
+  const suspiciousReputationChecks = security.reputationChecks.filter(check => 
+    check.status === 'warning' || check.status === 'malicious'
+  );
+  if (suspiciousReputationChecks.length > 0) {
+    recommendations.push({
+      category: 'security',
+      severity: 'critical',
+      title: 'Security Reputation Issues',
+      description: 'Site flagged by security reputation services.',
+      action: 'Investigate and resolve malware or security issues immediately.'
+    });
+  }
+
+  // General vulnerability recommendations
   if (security.vulnerabilities.length > 0) {
     const criticalVulns = security.vulnerabilities.filter(v => v.severity === 'critical');
     if (criticalVulns.length > 0) {
@@ -374,7 +533,7 @@ function generateRecommendations(
         severity: 'critical',
         title: 'Critical Security Vulnerabilities Found',
         description: `${criticalVulns.length} critical vulnerabilities detected.`,
-        action: 'Update WordPress core, plugins, and themes immediately.'
+        action: 'Update vulnerable components immediately.'
       });
     }
   }

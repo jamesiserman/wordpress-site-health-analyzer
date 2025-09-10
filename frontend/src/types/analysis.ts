@@ -14,14 +14,44 @@ export interface AnalysisResult {
 }
 
 export interface SecurityResult {
-  wordpressVersion?: string;
-  isWordPress: boolean;
-  detectionMethod: string;
-  isHardened: boolean;
+  sslCertificate: SSLCertificate;
+  securityHeaders: SecurityHeaders;
+  consoleWarnings: ConsoleWarning[];
+  reputationChecks: ReputationCheck[];
   vulnerabilities: Vulnerability[];
-  plugins: Plugin[];
-  themes: Theme[];
   score: number;
+}
+
+export interface SSLCertificate {
+  isValid: boolean;
+  issuer?: string;
+  expiryDate?: string;
+  grade?: string;
+  warnings: string[];
+}
+
+export interface SecurityHeaders {
+  contentSecurityPolicy: boolean;
+  strictTransportSecurity: boolean;
+  xFrameOptions: boolean;
+  xContentTypeOptions: boolean;
+  referrerPolicy: boolean;
+  permissionsPolicy: boolean;
+  score: number;
+}
+
+export interface ConsoleWarning {
+  type: 'security' | 'mixed-content' | 'deprecated' | 'vulnerability';
+  message: string;
+  severity: 'low' | 'medium' | 'high';
+  source?: string;
+}
+
+export interface ReputationCheck {
+  service: string;
+  status: 'clean' | 'warning' | 'malicious' | 'unknown';
+  details?: string;
+  lastChecked: string;
 }
 
 export interface GDPRResult {
