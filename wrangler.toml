@@ -1,5 +1,5 @@
-name = "sitepulse-frontend"
+name = "wordpress-site-health-analyzer"
 compatibility_date = "2024-01-01"
 
-[env.production.site]
+[site]
 bucket = "./frontend/build"
