@@ -952,25 +952,44 @@ Comprehensive security, GDPR compliance, and accessibility analysis for marketin
         </div>
       </div>
       
-      {/* Discrete admin access */}
+      {/* Admin access - temporary visible button for testing */}
       <div style={{
         textAlign: 'center',
-        padding: '40px 20px 20px',
-        opacity: '0.3'
+        padding: '40px 20px 20px'
       }}>
         <Link 
           to="/admin"
           style={{
-            color: '#86868b',
-            fontSize: '12px',
+            display: 'inline-block',
+            background: '#007aff',
+            color: 'white',
+            padding: '12px 24px',
+            borderRadius: '8px',
             textDecoration: 'none',
-            fontWeight: '400'
+            fontSize: '14px',
+            fontWeight: '600',
+            marginBottom: '20px'
           }}
-          onMouseOver={(e) => e.currentTarget.style.opacity = '0.8'}
-          onMouseOut={(e) => e.currentTarget.style.opacity = '1'}
         >
-          •
+          Admin Panel (Test)
         </Link>
+        
+        {/* Discrete admin access */}
+        <div style={{ opacity: '0.3' }}>
+          <Link 
+            to="/admin"
+            style={{
+              color: '#86868b',
+              fontSize: '12px',
+              textDecoration: 'none',
+              fontWeight: '400'
+            }}
+            onMouseOver={(e) => e.currentTarget.style.opacity = '0.8'}
+            onMouseOut={(e) => e.currentTarget.style.opacity = '1'}
+          >
+            •
+          </Link>
+        </div>
       </div>
     </div>
   );
