@@ -1,7 +1,9 @@
-import { AnalysisResult, SecurityResult, GDPRResult, AccessibilityResult, Recommendation, SSLCertificate, SecurityHeaders, ConsoleWarning, ReputationCheck } from './types';
+import { AnalysisResult, SecurityResult, GDPRResult, AccessibilityResult, Recommendation, SSLCertificate, SecurityHeaders, ConsoleWarning, ReputationCheck, SearchAnalytics, AdminSession, GeolocationData } from './types';
 
 export interface Env {
-  // Define any environment variables here
+  DB: D1Database;
+  ADMIN_USERNAME: string;
+  ADMIN_PASSWORD_HASH: string;
 }
 
 export default {
@@ -34,10 +36,23 @@ export default {
 
     // Analysis endpoint
     if (url.pathname === '/api/analyze' && request.method === 'GET') {
+      const startTime = Date.now();
+      const clientIP = request.headers.get('CF-Connecting-IP') || 'unknown';
+      const userAgent = request.headers.get('User-Agent') || 'unknown';
+      
       try {
         const targetUrl = url.searchParams.get('url');
         
         if (!targetUrl) {
+          await logSearchAnalytics(env.DB, {
+            url: '',
+            ip_address: clientIP,
+            user_agent: userAgent,
+            timestamp: new Date().toISOString(),
+            analysis_duration_ms: Date.now() - startTime,
+            error_message: 'URL parameter is required'
+          }, request);
+          
           return new Response(JSON.stringify({
             error: 'URL parameter is required'
           }), {
@@ -53,6 +68,15 @@ export default {
         try {
           new URL(targetUrl);
         } catch {
+          await logSearchAnalytics(env.DB, {
+            url: targetUrl,
+            ip_address: clientIP,
+            user_agent: userAgent,
+            timestamp: new Date().toISOString(),
+            analysis_duration_ms: Date.now() - startTime,
+            error_message: 'Invalid URL format'
+          }, request);
+          
           return new Response(JSON.stringify({
             error: 'Invalid URL format'
           }), {
@@ -65,6 +89,20 @@ export default {
         }
 
         const analysis = await analyzeWebsite(targetUrl);
+        const duration = Date.now() - startTime;
+        
+        // Log successful analysis
+        await logSearchAnalytics(env.DB, {
+          url: targetUrl,
+          ip_address: clientIP,
+          user_agent: userAgent,
+          timestamp: new Date().toISOString(),
+          overall_score: analysis.overallScore,
+          security_score: analysis.categoryScores.security,
+          gdpr_score: analysis.categoryScores.gdpr,
+          accessibility_score: analysis.categoryScores.accessibility,
+          analysis_duration_ms: duration
+        }, request);
         
         return new Response(JSON.stringify(analysis), {
           headers: { 
@@ -74,6 +112,17 @@ export default {
         });
       } catch (error) {
         console.error('Analysis error:', error);
+        
+        const targetUrl = url.searchParams.get('url') || '';
+        await logSearchAnalytics(env.DB, {
+          url: targetUrl,
+          ip_address: clientIP,
+          user_agent: userAgent,
+          timestamp: new Date().toISOString(),
+          analysis_duration_ms: Date.now() - startTime,
+          error_message: error instanceof Error ? error.message : 'Unknown error'
+        }, request);
+        
         return new Response(JSON.stringify({
           error: 'Failed to analyze website',
           message: error instanceof Error ? error.message : 'Unknown error'
@@ -87,12 +136,284 @@ export default {
       }
     }
 
+    // Admin login endpoint
+    if (url.pathname === '/api/admin/login' && request.method === 'POST') {
+      return handleAdminLogin(request, env, corsHeaders);
+    }
+
+    // Admin analytics endpoint
+    if (url.pathname === '/api/admin/analytics' && request.method === 'GET') {
+      return handleAdminAnalytics(request, env, corsHeaders);
+    }
+
+    // Admin logout endpoint
+    if (url.pathname === '/api/admin/logout' && request.method === 'POST') {
+      return handleAdminLogout(request, env, corsHeaders);
+    }
+
     return new Response('Not Found', { 
       status: 404,
       headers: corsHeaders
     });
   },
 };
+
+// Analytics and geolocation functions
+async function getGeolocation(request: Request): Promise<GeolocationData> {
+  try {
+    // Use Cloudflare's built-in geolocation data
+    const country = request.cf?.country as string;
+    const city = request.cf?.city as string;
+    const region = request.cf?.region as string;
+    
+    return {
+      country: country || undefined,
+      city: city || undefined,
+      region: region || undefined
+    };
+  } catch (error) {
+    console.error('Geolocation error:', error);
+    return {};
+  }
+}
+
+async function logSearchAnalytics(db: D1Database, analytics: Omit<SearchAnalytics, 'id'>, request: Request): Promise<void> {
+  try {
+    const geolocation = await getGeolocation(request);
+    
+    await db.prepare(`
+      INSERT INTO search_analytics (
+        url, ip_address, country, city, region, user_agent, timestamp,
+        overall_score, security_score, gdpr_score, accessibility_score,
+        analysis_duration_ms, error_message
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).bind(
+      analytics.url,
+      analytics.ip_address,
+      geolocation.country,
+      geolocation.city,
+      geolocation.region,
+      analytics.user_agent,
+      analytics.timestamp,
+      analytics.overall_score,
+      analytics.security_score,
+      analytics.gdpr_score,
+      analytics.accessibility_score,
+      analytics.analysis_duration_ms,
+      analytics.error_message
+    ).run();
+  } catch (error) {
+    console.error('Failed to log analytics:', error);
+  }
+}
+
+// Admin authentication functions
+async function generateSessionToken(): Promise<string> {
+  const array = new Uint8Array(32);
+  crypto.getRandomValues(array);
+  return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
+}
+
+async function hashPassword(password: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function verifyPassword(password: string, hash: string): Promise<boolean> {
+  const passwordHash = await hashPassword(password);
+  return passwordHash === hash;
+}
+
+async function createAdminSession(db: D1Database, ipAddress: string): Promise<string> {
+  const sessionToken = await generateSessionToken();
+  const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+  
+  await db.prepare(`
+    INSERT INTO admin_sessions (session_token, expires_at, ip_address)
+    VALUES (?, ?, ?)
+  `).bind(sessionToken, expiresAt.toISOString(), ipAddress).run();
+  
+  return sessionToken;
+}
+
+async function validateAdminSession(db: D1Database, sessionToken: string): Promise<boolean> {
+  try {
+    const result = await db.prepare(`
+      SELECT expires_at FROM admin_sessions 
+      WHERE session_token = ? AND expires_at > datetime('now')
+    `).bind(sessionToken).first();
+    
+    return !!result;
+  } catch (error) {
+    console.error('Session validation error:', error);
+    return false;
+  }
+}
+
+async function deleteAdminSession(db: D1Database, sessionToken: string): Promise<void> {
+  try {
+    await db.prepare(`
+      DELETE FROM admin_sessions WHERE session_token = ?
+    `).bind(sessionToken).run();
+  } catch (error) {
+    console.error('Session deletion error:', error);
+  }
+}
+
+// Admin endpoint handlers
+async function handleAdminLogin(request: Request, env: Env, corsHeaders: Record<string, string>): Promise<Response> {
+  try {
+    const body = await request.json() as { username: string; password: string };
+    const { username, password } = body;
+    const clientIP = request.headers.get('CF-Connecting-IP') || 'unknown';
+    
+    if (username === env.ADMIN_USERNAME && await verifyPassword(password, env.ADMIN_PASSWORD_HASH)) {
+      const sessionToken = await createAdminSession(env.DB, clientIP);
+      
+      return new Response(JSON.stringify({
+        success: true,
+        sessionToken
+      }), {
+        headers: {
+          'Content-Type': 'application/json',
+          ...corsHeaders
+        }
+      });
+    } else {
+      return new Response(JSON.stringify({
+        error: 'Invalid credentials'
+      }), {
+        status: 401,
+        headers: {
+          'Content-Type': 'application/json',
+          ...corsHeaders
+        }
+      });
+    }
+  } catch (error) {
+    return new Response(JSON.stringify({
+      error: 'Login failed'
+    }), {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        ...corsHeaders
+      }
+    });
+  }
+}
+
+async function handleAdminAnalytics(request: Request, env: Env, corsHeaders: Record<string, string>): Promise<Response> {
+  try {
+    const sessionToken = request.headers.get('Authorization')?.replace('Bearer ', '');
+    
+    if (!sessionToken || !await validateAdminSession(env.DB, sessionToken)) {
+      return new Response(JSON.stringify({
+        error: 'Unauthorized'
+      }), {
+        status: 401,
+        headers: {
+          'Content-Type': 'application/json',
+          ...corsHeaders
+        }
+      });
+    }
+    
+    const url = new URL(request.url);
+    const limit = parseInt(url.searchParams.get('limit') || '50');
+    const offset = parseInt(url.searchParams.get('offset') || '0');
+    
+    // Get recent searches
+    const recentSearches = await env.DB.prepare(`
+      SELECT * FROM search_analytics 
+      ORDER BY timestamp DESC 
+      LIMIT ? OFFSET ?
+    `).bind(limit, offset).all();
+    
+    // Get analytics summary
+    const totalSearches = await env.DB.prepare(`
+      SELECT COUNT(*) as count FROM search_analytics
+    `).first();
+    
+    const avgScore = await env.DB.prepare(`
+      SELECT AVG(overall_score) as avg_score FROM search_analytics 
+      WHERE overall_score IS NOT NULL
+    `).first();
+    
+    const topCountries = await env.DB.prepare(`
+      SELECT country, COUNT(*) as count 
+      FROM search_analytics 
+      WHERE country IS NOT NULL 
+      GROUP BY country 
+      ORDER BY count DESC 
+      LIMIT 10
+    `).all();
+    
+    const errorRate = await env.DB.prepare(`
+      SELECT 
+        COUNT(CASE WHEN error_message IS NOT NULL THEN 1 END) * 100.0 / COUNT(*) as error_rate
+      FROM search_analytics
+    `).first();
+    
+    return new Response(JSON.stringify({
+      recentSearches: recentSearches.results,
+      summary: {
+        totalSearches: totalSearches?.count || 0,
+        averageScore: avgScore?.avg_score || 0,
+        errorRate: errorRate?.error_rate || 0,
+        topCountries: topCountries.results
+      }
+    }), {
+      headers: {
+        'Content-Type': 'application/json',
+        ...corsHeaders
+      }
+    });
+  } catch (error) {
+    console.error('Analytics error:', error);
+    return new Response(JSON.stringify({
+      error: 'Failed to fetch analytics'
+    }), {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        ...corsHeaders
+      }
+    });
+  }
+}
+
+async function handleAdminLogout(request: Request, env: Env, corsHeaders: Record<string, string>): Promise<Response> {
+  try {
+    const sessionToken = request.headers.get('Authorization')?.replace('Bearer ', '');
+    
+    if (sessionToken) {
+      await deleteAdminSession(env.DB, sessionToken);
+    }
+    
+    return new Response(JSON.stringify({
+      success: true
+    }), {
+      headers: {
+        'Content-Type': 'application/json',
+        ...corsHeaders
+      }
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({
+      error: 'Logout failed'
+    }), {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        ...corsHeaders
+      }
+    });
+  }
+}
 
 async function analyzeWebsite(url: string): Promise<AnalysisResult> {
   try {

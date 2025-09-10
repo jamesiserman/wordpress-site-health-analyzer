@@ -13,6 +13,37 @@ export interface AnalysisResult {
   recommendations: Recommendation[];
 }
 
+export interface SearchAnalytics {
+  id?: number;
+  url: string;
+  ip_address: string;
+  country?: string;
+  city?: string;
+  region?: string;
+  user_agent?: string;
+  timestamp: string;
+  overall_score?: number;
+  security_score?: number;
+  gdpr_score?: number;
+  accessibility_score?: number;
+  analysis_duration_ms?: number;
+  error_message?: string;
+}
+
+export interface AdminSession {
+  id?: number;
+  session_token: string;
+  created_at: string;
+  expires_at: string;
+  ip_address?: string;
+}
+
+export interface GeolocationData {
+  country?: string;
+  city?: string;
+  region?: string;
+}
+
 export interface SecurityResult {
   sslCertificate: SSLCertificate;
   securityHeaders: SecurityHeaders;

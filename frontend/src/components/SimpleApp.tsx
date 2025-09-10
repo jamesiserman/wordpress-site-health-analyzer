@@ -950,6 +950,27 @@ Comprehensive security, GDPR compliance, and accessibility analysis for marketin
           </button>
         </div>
       </div>
+      
+      {/* Discrete admin access */}
+      <div style={{
+        textAlign: 'center',
+        padding: '40px 20px 20px',
+        opacity: '0.3'
+      }}>
+        <a 
+          href="/admin"
+          style={{
+            color: '#86868b',
+            fontSize: '12px',
+            textDecoration: 'none',
+            fontWeight: '400'
+          }}
+          onMouseOver={(e) => e.currentTarget.style.opacity = '0.8'}
+          onMouseOut={(e) => e.currentTarget.style.opacity = '1'}
+        >
+          •
+        </a>
+      </div>
     </div>
   );
 }
