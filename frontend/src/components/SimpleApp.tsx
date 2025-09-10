@@ -196,16 +196,18 @@ function SimpleApp() {
           <div className="container" style={{maxWidth: '1200px', margin: '0 auto', padding: '0 24px', position: 'relative'}}>
             <div className="fade-in-up">
               <h1 className="display-large" style={{
-                fontSize: '96px',
+                fontSize: 'clamp(32px, 15vw, 96px)',
                 fontWeight: '900',
                 color: '#000000',
                 lineHeight: '1.05',
                 marginBottom: '24px',
-                letterSpacing: '4px',
+                letterSpacing: 'clamp(1px, 0.8vw, 4px)',
                 textShadow: '0 2px 4px rgba(0,0,0,0.1)',
                 position: 'relative',
                 fontStretch: 'ultra-expanded',
-                WebkitTextStroke: '8px #000000'
+                WebkitTextStroke: 'clamp(1px, 1.2vw, 7px) rgba(0,0,0,1)',
+                maxWidth: '100%',
+                wordSpacing: 'clamp(8px, 2vw, 20px)'
               } as React.CSSProperties}>
                 SITE PULSE
                 <svg 
