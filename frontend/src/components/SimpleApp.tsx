@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ApiService } from '../services/api';
 import { AnalysisResult } from '../types/analysis';
 import { Header } from './Header';
@@ -13,19 +13,26 @@ function SimpleApp() {
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const dashboardRef = useRef<HTMLDivElement>(null);
 
-  // Initialize analytics on component mount
   useEffect(() => {
     initializeAnalytics();
   }, []);
 
-  const normalizeUrl = (inputUrl: string): string => {
-    let normalizedUrl = inputUrl.trim();
-    normalizedUrl = normalizedUrl.replace(/^https?:\/\//, '');
-    if (!normalizedUrl.startsWith('http://') && !normalizedUrl.startsWith('https://')) {
-      normalizedUrl = 'https://' + normalizedUrl;
+  // Scroll to dashboard when analysis loads
+  useEffect(() => {
+    if (analysis && dashboardRef.current) {
+      dashboardRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-    return normalizedUrl;
+  }, [analysis]);
+
+  const normalizeUrl = (inputUrl: string): string => {
+    let normalized = inputUrl.trim();
+    normalized = normalized.replace(/^https?:\/\//, '');
+    if (!normalized.startsWith('http://') && !normalized.startsWith('https://')) {
+      normalized = 'https://' + normalized;
+    }
+    return normalized;
   };
 
   const handleAnalyze = async (url: string) => {
@@ -34,9 +41,7 @@ function SimpleApp() {
     const normalizedUrl = normalizeUrl(url);
     const startTime = Date.now();
 
-    // Track scan initiation
     trackScanInitiated(normalizedUrl);
-
     setIsLoading(true);
     setError(null);
     setAnalysis(null);
@@ -45,9 +50,7 @@ function SimpleApp() {
       const result = await ApiService.analyzeWebsite(normalizedUrl);
       if (result && typeof result === 'object') {
         setAnalysis(result);
-
-        // Track scan completion
-        const duration = (Date.now() - startTime) / 1000; // Convert to seconds
+        const duration = (Date.now() - startTime) / 1000;
         trackScanCompleted(normalizedUrl, result.overallScore, duration);
       } else {
         setError('Invalid response format from server');
@@ -62,10 +65,10 @@ function SimpleApp() {
 
   const calculateOverallScore = (): number => {
     if (!analysis) return 0;
-    const securityScore = Math.max(0, 100 - (analysis.security.vulnerabilities.length * 10));
-    const privacyScore = (analysis.gdpr.hasCookieBanner && analysis.gdpr.hasPrivacyPolicy) ? 85 : 40;
-    const accessibilityScore = Math.max(0, 100 - (analysis.accessibility.missingAltImages * 5));
-    return Math.round((securityScore + privacyScore + accessibilityScore) / 3);
+    const sec = Math.max(0, 100 - (analysis.security.vulnerabilities.length * 10));
+    const priv = (analysis.gdpr.hasCookieBanner && analysis.gdpr.hasPrivacyPolicy) ? 85 : 40;
+    const a11y = Math.max(0, 100 - (analysis.accessibility.missingAltImages * 5));
+    return Math.round((sec + priv + a11y) / 3);
   };
 
   const calculateSecurityScore = (): number => {
@@ -75,9 +78,9 @@ function SimpleApp() {
 
   const calculatePrivacyScore = (): number => {
     if (!analysis) return 0;
-    const baseScore = (analysis.gdpr.hasCookieBanner && analysis.gdpr.hasPrivacyPolicy) ? 85 : 40;
-    const trackerPenalty = analysis.gdpr.trackers.filter(t => t.detected).length * 5;
-    return Math.max(0, baseScore - trackerPenalty);
+    const base = (analysis.gdpr.hasCookieBanner && analysis.gdpr.hasPrivacyPolicy) ? 85 : 40;
+    const penalty = analysis.gdpr.trackers.filter(t => t.detected).length * 5;
+    return Math.max(0, base - penalty);
   };
 
   const calculateAccessibilityScore = (): number => {
@@ -85,14 +88,22 @@ function SimpleApp() {
     return Math.max(0, 100 - (analysis.accessibility.missingAltImages * 5));
   };
 
+  const handleScanClick = () => {
+    if (analysis) {
+      setAnalysis(null);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="tessera-app">
-      <Header />
+      <Header onScanClick={handleScanClick} />
 
       {error && (
-        <div className="error-banner">
+        <div className="error-banner" role="alert">
           <div className="container">
-            <p className="error-text">⚠️ {error}</p>
+            <span aria-hidden="true">⚠</span>
+            <p className="error-text">{error}</p>
           </div>
         </div>
       )}
@@ -100,7 +111,7 @@ function SimpleApp() {
       {!analysis ? (
         <HeroSection onAnalyze={handleAnalyze} isLoading={isLoading} />
       ) : (
-        <div className="dashboard-view">
+        <main id="main-content" className="dashboard-view" ref={dashboardRef}>
           <AnalysisSummary analysis={analysis} />
 
           <ComplianceScore
@@ -114,14 +125,15 @@ function SimpleApp() {
 
           <Recommendations recommendations={analysis.recommendations} />
 
-          <button
-            className="btn btn-secondary btn-large"
-            onClick={() => setAnalysis(null)}
-            style={{ display: 'block', margin: '40px auto' }}
-          >
-            Analyze Another Site
-          </button>
-        </div>
+          <div style={{ textAlign: 'center', padding: '48px 0 64px' }}>
+            <button
+              className="btn btn-secondary btn-lg"
+              onClick={() => setAnalysis(null)}
+            >
+              Scan Another Website
+            </button>
+          </div>
+        </main>
       )}
     </div>
   );

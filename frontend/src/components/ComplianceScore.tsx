@@ -28,25 +28,20 @@ export function ComplianceScore({
   };
 
   const ScoreCircle = ({ score, label, icon }: { score: number; label: string; icon: string }) => {
-    const circumference = 2 * Math.PI * 54;
+    const r = 54;
+    const circumference = 2 * Math.PI * r;
     const offset = circumference - (score / 100) * circumference;
 
     return (
       <div className="score-circle-wrapper">
         <div className="score-circle-container">
-          <svg className="score-circle-svg" viewBox="0 0 120 120">
-            {/* Background circle */}
-            <circle cx="60" cy="60" r="54" className="score-circle-bg" />
-            {/* Progress circle */}
+          <svg className="score-circle-svg" viewBox="0 0 120 120" role="img" aria-label={`${label} score: ${score}%`}>
+            <circle cx="60" cy="60" r={r} className="score-circle-bg" />
             <circle
-              cx="60"
-              cy="60"
-              r="54"
+              cx="60" cy="60" r={r}
               className="score-circle-progress"
-              style={{
-                strokeDasharray: circumference,
-                strokeDashoffset: offset,
-              }}
+              style={{ strokeDasharray: circumference, strokeDashoffset: offset }}
+              transform="rotate(-90 60 60)"
             />
           </svg>
           <div className="score-text">
@@ -55,87 +50,70 @@ export function ComplianceScore({
           </div>
         </div>
         <p className="score-label">{label}</p>
-        <p className="score-category">{icon}</p>
+        <p className="score-category" aria-hidden="true">{icon}</p>
       </div>
     );
   };
 
-  return (
-    <section className="compliance-score-section">
-      <div className="container">
-        <h2 className="section-title">Your Compliance Score</h2>
+  const overallR = 90;
+  const overallCirc = 2 * Math.PI * overallR;
+  const overallOffset = overallCirc - (overallScore / 100) * overallCirc;
 
-        {/* Overall Score */}
+  return (
+    <section className="compliance-score-section" aria-labelledby="score-heading">
+      <div className="container">
+        <h2 id="score-heading">Your Compliance Score</h2>
+
         <div className="overall-score-card">
-          <div className="overall-score-content">
-            <div className="overall-score-display">
-              <svg className="large-circle" viewBox="0 0 200 200">
-                <circle cx="100" cy="100" r="90" className="score-circle-bg" />
-                <circle
-                  cx="100"
-                  cy="100"
-                  r="90"
-                  className="score-circle-progress"
-                  style={{
-                    strokeDasharray: 2 * Math.PI * 90,
-                    strokeDashoffset: 2 * Math.PI * 90 - (overallScore / 100) * 2 * Math.PI * 90,
-                  }}
-                />
-              </svg>
-              <div className="overall-score-text">
-                <span className="overall-number">{overallScore}</span>
-                <span className="overall-percent">%</span>
-              </div>
+          <div className="overall-score-display">
+            <svg className="large-circle" viewBox="0 0 200 200" role="img" aria-label={`Overall compliance score: ${overallScore}%`}>
+              <circle cx="100" cy="100" r={overallR} className="score-circle-bg" />
+              <circle
+                cx="100" cy="100" r={overallR}
+                className="score-circle-progress"
+                style={{ strokeDasharray: overallCirc, strokeDashoffset: overallOffset }}
+                transform="rotate(-90 100 100)"
+              />
+            </svg>
+            <div className="overall-score-text">
+              <span className="overall-number">{overallScore}</span>
+              <span className="overall-percent">%</span>
             </div>
-            <div className="overall-status">
-              <p className={`status-label ${getScoreStatusColor(overallScore)}`}>
-                {getScoreStatus(overallScore)}
-              </p>
-              <p className="status-message">
-                Overall compliance score across all standards
-              </p>
-            </div>
+          </div>
+          <div className="overall-status">
+            <p className={`status-label ${getScoreStatusColor(overallScore)}`}>
+              {getScoreStatus(overallScore)}
+            </p>
+            <p className="status-message">
+              Overall compliance across security, privacy, and accessibility standards
+            </p>
           </div>
         </div>
 
-        {/* Category Scores */}
         <div className="category-scores">
           <ScoreCircle score={securityScore} label="Security" icon="🔒" />
           <ScoreCircle score={privacyScore} label="Privacy" icon="👁️" />
           <ScoreCircle score={accessibilityScore} label="Accessibility" icon="♿" />
         </div>
 
-        {/* Score Breakdown Bars */}
         <div className="score-bars-section">
-          <div className="score-bar-item">
-            <div className="score-bar-header">
-              <span className="score-bar-label">🔒 Security</span>
-              <span className="score-bar-value">{securityScore}%</span>
+          {[
+            { label: 'Security', icon: '🔒', score: securityScore },
+            { label: 'Privacy', icon: '👁️', score: privacyScore },
+            { label: 'Accessibility', icon: '♿', score: accessibilityScore },
+          ].map(({ label, icon, score }) => (
+            <div className="score-bar-item" key={label}>
+              <div className="score-bar-header">
+                <span className="score-bar-label">
+                  <span aria-hidden="true">{icon}</span> {label}
+                </span>
+                <span className="score-bar-value">{score}%</span>
+              </div>
+              <div className="score-bar" role="progressbar" aria-valuenow={score} aria-valuemin={0} aria-valuemax={100} aria-label={`${label} score`}>
+                <div className="score-bar-fill" style={{ width: `${score}%` }} />
+              </div>
             </div>
-            <div className="score-bar">
-              <div className="score-bar-fill" style={{ width: `${securityScore}%` }}></div>
-            </div>
-          </div>
-
-          <div className="score-bar-item">
-            <div className="score-bar-header">
-              <span className="score-bar-label">👁️ Privacy</span>
-              <span className="score-bar-value">{privacyScore}%</span>
-            </div>
-            <div className="score-bar">
-              <div className="score-bar-fill" style={{ width: `${privacyScore}%` }}></div>
-            </div>
-          </div>
-
-          <div className="score-bar-item">
-            <div className="score-bar-header">
-              <span className="score-bar-label">♿ Accessibility</span>
-              <span className="score-bar-value">{accessibilityScore}%</span>
-            </div>
-            <div className="score-bar">
-              <div className="score-bar-fill" style={{ width: `${accessibilityScore}%` }}></div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
