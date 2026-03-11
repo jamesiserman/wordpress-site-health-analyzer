@@ -4,6 +4,7 @@ import { AnalysisResult } from '../types/analysis';
 import { Header } from './Header';
 import { HeroSection } from './HeroSection';
 import { ComplianceScore } from './ComplianceScore';
+import { FindingsSection } from './FindingsSection';
 
 function SimpleApp() {
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
@@ -90,76 +91,7 @@ function SimpleApp() {
             accessibilityScore={calculateAccessibilityScore()}
           />
 
-          <section className="findings-section">
-            <div className="container">
-              <h2 className="section-title">Detailed Findings</h2>
-
-              {/* Security Findings */}
-              <div className="findings-card security-findings">
-                <h3 className="findings-title">🔒 Security</h3>
-                {analysis.security.vulnerabilities.length > 0 ? (
-                  <div className="findings-list">
-                    {analysis.security.vulnerabilities.map((vuln, idx) => (
-                      <div key={idx} className="finding-item critical">
-                        <span className="finding-icon">✗</span>
-                        <div className="finding-content">
-                          <p className="finding-name">{vuln.component || 'Unknown Component'}</p>
-                          <p className="finding-description">{vuln.description}</p>
-                          <p className="finding-severity">Severity: {vuln.severity}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="finding-item success">
-                    <span className="finding-icon">✓</span>
-                    <p className="finding-name">No known vulnerabilities detected</p>
-                  </div>
-                )}
-              </div>
-
-              {/* Privacy Findings */}
-              <div className="findings-card privacy-findings">
-                <h3 className="findings-title">👁️ Privacy</h3>
-                <div className="findings-list">
-                  {!analysis.gdpr.hasCookieBanner && (
-                    <div className="finding-item critical">
-                      <span className="finding-icon">✗</span>
-                      <p className="finding-name">No cookie consent banner detected</p>
-                    </div>
-                  )}
-                  {!analysis.gdpr.hasPrivacyPolicy && (
-                    <div className="finding-item critical">
-                      <span className="finding-icon">✗</span>
-                      <p className="finding-name">No privacy policy found</p>
-                    </div>
-                  )}
-                  {analysis.gdpr.hasCookieBanner && analysis.gdpr.hasPrivacyPolicy && (
-                    <div className="finding-item success">
-                      <span className="finding-icon">✓</span>
-                      <p className="finding-name">GDPR-compliant privacy setup detected</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              {/* Accessibility Findings */}
-              <div className="findings-card accessibility-findings">
-                <h3 className="findings-title">♿ Accessibility</h3>
-                {analysis.accessibility.missingAltImages > 0 ? (
-                  <div className="finding-item warning">
-                    <span className="finding-icon">⚠</span>
-                    <p className="finding-name">{analysis.accessibility.missingAltImages} images missing alt text</p>
-                  </div>
-                ) : (
-                  <div className="finding-item success">
-                    <span className="finding-icon">✓</span>
-                    <p className="finding-name">All images have alt text</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </section>
+          <FindingsSection analysis={analysis} />
 
           <button
             className="btn btn-secondary btn-large"
