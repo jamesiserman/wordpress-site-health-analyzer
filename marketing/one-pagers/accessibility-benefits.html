@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tessera — Accessibility Benefits</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a2b4a; line-height: 1.6; max-width: 816px;
+    margin: 0 auto; padding: 48px; background: #fff;
+  }
+  .header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 40px; padding-bottom: 20px; border-bottom: 3px solid #0066cc;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-text { font-size: 28px; font-weight: 800; color: #1a2b4a; }
+  .badge { background: #0066cc; color: #fff; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .hero {
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    color: #fff; padding: 36px; border-radius: 8px; margin-bottom: 32px;
+  }
+  .hero h1 { font-size: 30px; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
+  .hero p { font-size: 15px; opacity: 0.9; max-width: 520px; }
+
+  .alert-box { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+  .alert-stat { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 20px; text-align: center; }
+  .alert-stat .num { font-size: 32px; font-weight: 800; color: #0066cc; display: block; }
+  .alert-stat .label { font-size: 12px; color: #5a6b7d; font-weight: 500; }
+
+  h2 { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+  h2::before { content: ''; display: inline-block; width: 4px; height: 20px; background: #0066cc; border-radius: 2px; margin-right: 10px; vertical-align: text-bottom; }
+
+  .wcag-section { margin-bottom: 32px; }
+  .wcag-levels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .wcag-level { padding: 20px; border-radius: 8px; border: 1px solid #e0e6ed; text-align: center; }
+  .wcag-level.active { border-color: #0066cc; background: #eff6ff; }
+  .level-badge { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  .level-a .level-badge { background: #e0e6ed; color: #5a6b7d; }
+  .level-aa .level-badge { background: #0066cc; color: #fff; }
+  .level-aaa .level-badge { background: #1a2b4a; color: #fff; }
+  .wcag-level h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .wcag-level p { font-size: 12px; color: #8b9ba8; }
+
+  .pour { margin-bottom: 32px; }
+  .pour-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .pour-item { padding: 18px; background: #f8f9fb; border-radius: 6px; border: 1px solid #e0e6ed; border-left: 4px solid #0066cc; }
+  .pour-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; color: #0066cc; }
+  .pour-item p { font-size: 12px; color: #5a6b7d; line-height: 1.5; }
+
+  .issues { margin-bottom: 32px; }
+  .issue-list { list-style: none; }
+  .issue-item { display: flex; gap: 12px; padding: 14px 16px; margin-bottom: 8px; background: #f8f9fb; border-radius: 6px; border: 1px solid #e0e6ed; }
+  .issue-icon { font-size: 18px; flex-shrink: 0; }
+  .issue-item h4 { font-size: 13px; font-weight: 600; margin-bottom: 2px; }
+  .issue-item p { font-size: 12px; color: #8b9ba8; }
+
+  .legal { margin-bottom: 32px; }
+  .legal-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .legal-card { padding: 20px; border-radius: 8px; border: 1px solid #e0e6ed; }
+  .legal-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .legal-card p { font-size: 12px; color: #5a6b7d; line-height: 1.5; }
+  .legal-card .region { font-size: 11px; color: #0066cc; font-weight: 600; text-transform: uppercase; margin-bottom: 4px; display: block; }
+
+  .impact { margin-bottom: 32px; }
+  .impact-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .impact-stat { text-align: center; padding: 16px; background: #f0fdf4; border-radius: 8px; border: 1px solid #bbf7d0; }
+  .impact-stat .num { font-size: 24px; font-weight: 800; color: #2ecc71; display: block; }
+  .impact-stat .label { font-size: 11px; color: #5a6b7d; }
+
+  .cta {
+    background: #1a2b4a; color: #fff; padding: 28px 36px; border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;
+  }
+  .cta h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .cta p { font-size: 13px; opacity: 0.8; }
+  .cta-btn { background: linear-gradient(135deg, #0066cc, #004499); color: #fff; padding: 12px 28px; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .footer { text-align: center; font-size: 11px; color: #8b9ba8; padding-top: 16px; border-top: 1px solid #e0e6ed; }
+  .footer a { color: #0066cc; text-decoration: none; }
+  @media print { body { padding: 24px; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+      <path d="M6 8L12 4.5L18 8V14L12 17.5L6 14Z" stroke="#1a2b4a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M8 12L14 8.5L20 12V18L14 21.5L8 18Z" stroke="#1a2b4a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4 14L10 10.5L16 14V20L10 23.5L4 20Z" stroke="#1a2b4a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="12" cy="10.75" r="1.8" fill="#0066cc" opacity="0.8"/>
+      <circle cx="14" cy="15" r="1.8" fill="#0066cc" opacity="0.8"/>
+      <circle cx="10" cy="17" r="1.8" fill="#0066cc" opacity="0.8"/>
+    </svg>
+    <span class="logo-text">Tessera</span>
+  </div>
+  <span class="badge">Accessibility</span>
+</div>
+
+<div class="hero">
+  <h1>Make Your Website Accessible to Everyone</h1>
+  <p>Tessera audits your website against WCAG 2.1 standards — checking alt text, heading structure, ARIA labels, and color contrast in 60 seconds.</p>
+</div>
+
+<div class="alert-box">
+  <div class="alert-stat">
+    <span class="num">97%</span>
+    <span class="label">Home pages with WCAG failures</span>
+  </div>
+  <div class="alert-stat">
+    <span class="num">1.3B</span>
+    <span class="label">People with disabilities globally</span>
+  </div>
+  <div class="alert-stat">
+    <span class="num">$13T</span>
+    <span class="label">Disability market spending power</span>
+  </div>
+</div>
+
+<div class="wcag-section">
+  <h2>WCAG 2.1 Conformance Levels</h2>
+  <div class="wcag-levels">
+    <div class="wcag-level level-a">
+      <span class="level-badge">Level A</span>
+      <h4>Basic</h4>
+      <p>Minimum accessibility — removes the most significant barriers</p>
+    </div>
+    <div class="wcag-level level-aa active">
+      <span class="level-badge">Level AA</span>
+      <h4>Standard (Target)</h4>
+      <p>Industry standard — addresses most common accessibility barriers</p>
+    </div>
+    <div class="wcag-level level-aaa">
+      <span class="level-badge">Level AAA</span>
+      <h4>Advanced</h4>
+      <p>Highest conformance — maximum inclusivity for all users</p>
+    </div>
+  </div>
+</div>
+
+<div class="pour">
+  <h2>POUR Principles — What Tessera Checks</h2>
+  <div class="pour-grid">
+    <div class="pour-item">
+      <h4>Perceivable</h4>
+      <p>Alt text for images, captions for media, sufficient color contrast, text alternatives</p>
+    </div>
+    <div class="pour-item">
+      <h4>Operable</h4>
+      <p>Keyboard navigation, focus indicators, skip links, no time traps, clear focus order</p>
+    </div>
+    <div class="pour-item">
+      <h4>Understandable</h4>
+      <p>Readable content, predictable navigation, input labels, error identification</p>
+    </div>
+    <div class="pour-item">
+      <h4>Robust</h4>
+      <p>Valid HTML, ARIA attributes, compatible with screen readers and assistive tech</p>
+    </div>
+  </div>
+</div>
+
+<div class="issues">
+  <h2>Most Common Issues We Find</h2>
+  <ul class="issue-list">
+    <li class="issue-item">
+      <span class="issue-icon">🖼️</span>
+      <div><h4>Missing Alt Text (86% of sites)</h4><p>Images without descriptive alt attributes are invisible to screen reader users</p></div>
+    </li>
+    <li class="issue-item">
+      <span class="issue-icon">🔤</span>
+      <div><h4>Low Color Contrast (83% of sites)</h4><p>Text that doesn't meet 4.5:1 contrast ratio is unreadable for low-vision users</p></div>
+    </li>
+    <li class="issue-item">
+      <span class="issue-icon">📑</span>
+      <div><h4>Broken Heading Hierarchy (58% of sites)</h4><p>Skipped heading levels (H1 to H3) confuse screen reader navigation</p></div>
+    </li>
+    <li class="issue-item">
+      <span class="issue-icon">🏷️</span>
+      <div><h4>Missing Form Labels (54% of sites)</h4><p>Unlabeled inputs prevent screen reader users from completing forms</p></div>
+    </li>
+  </ul>
+</div>
+
+<div class="legal">
+  <h2>Legal Landscape</h2>
+  <div class="legal-grid">
+    <div class="legal-card">
+      <span class="region">United States</span>
+      <h4>ADA (Americans with Disabilities Act)</h4>
+      <p>Web accessibility lawsuits exceeded 4,000 in 2023. Courts increasingly rule that websites are "places of public accommodation."</p>
+    </div>
+    <div class="legal-card">
+      <span class="region">European Union</span>
+      <h4>European Accessibility Act (EAA)</h4>
+      <p>Effective June 2025. Requires digital products and services to meet accessibility standards. Covers e-commerce, banking, transport.</p>
+    </div>
+    <div class="legal-card">
+      <span class="region">United Kingdom</span>
+      <h4>Equality Act 2010</h4>
+      <p>Service providers must make reasonable adjustments for disabled users. Non-compliant websites face legal action.</p>
+    </div>
+    <div class="legal-card">
+      <span class="region">Canada</span>
+      <h4>AODA (Ontario) / ACA</h4>
+      <p>Mandatory WCAG AA compliance for organizations with 50+ employees. Federal Accessible Canada Act expanding coverage.</p>
+    </div>
+  </div>
+</div>
+
+<div class="impact">
+  <h2>Business Impact of Accessibility</h2>
+  <div class="impact-stats">
+    <div class="impact-stat">
+      <span class="num">+28%</span>
+      <span class="label">SEO ranking boost</span>
+    </div>
+    <div class="impact-stat">
+      <span class="num">+15%</span>
+      <span class="label">Broader audience reach</span>
+    </div>
+    <div class="impact-stat">
+      <span class="num">-40%</span>
+      <span class="label">Fewer support tickets</span>
+    </div>
+    <div class="impact-stat">
+      <span class="num">+20%</span>
+      <span class="label">Conversion rate gain</span>
+    </div>
+  </div>
+</div>
+
+<div class="cta">
+  <div>
+    <h3>Is your website accessible?</h3>
+    <p>Free scan. No account required. Results in 60 seconds.</p>
+  </div>
+  <a href="https://wordpress-site-health-analyzer.pages.dev" class="cta-btn">Check My Site Free &rarr;</a>
+</div>
+
+<div class="footer">
+  <p>&copy; 2026 Tessera. All rights reserved. | <a href="https://wordpress-site-health-analyzer.pages.dev">tessera.dev</a> | Standards Made Visible</p>
+</div>
+
+</body>
+</html>

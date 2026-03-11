@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tessera Brand Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #1a2b4a;
+    background: #ffffff;
+  }
+
+  /* ── Layout ── */
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 64px 0; border-bottom: 1px solid #e0e6ed; }
+  section:last-child { border-bottom: none; }
+
+  /* ── Cover ── */
+  .cover {
+    background: linear-gradient(180deg, #1a2b4a 0%, #243545 100%);
+    color: #ffffff;
+    padding: 80px 0;
+    text-align: center;
+  }
+  .cover h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .cover p { font-size: 18px; color: #8b9ba8; }
+  .cover .logo-mark { margin-bottom: 32px; }
+
+  /* ── Typography ── */
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 12px;
+    color: #1a2b4a;
+  }
+  h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    color: #1a2b4a;
+  }
+  p { margin-bottom: 16px; color: #1a2b4a; }
+  .section-intro { font-size: 17px; color: #8b9ba8; margin-bottom: 32px; }
+
+  /* ── Swatch Grid ── */
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .swatch {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e0e6ed;
+    box-shadow: 0 2px 8px rgba(26, 43, 74, 0.06);
+  }
+  .swatch-color {
+    height: 96px;
+    width: 100%;
+  }
+  .swatch-info {
+    padding: 12px 14px;
+    background: #ffffff;
+  }
+  .swatch-name {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  .swatch-hex {
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    color: #8b9ba8;
+  }
+
+  /* ── Gradient Row ── */
+  .gradient-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .gradient-swatch {
+    height: 72px;
+    border-radius: 8px;
+    display: flex;
+    align-items: flex-end;
+    padding: 12px 16px;
+    color: #ffffff;
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    box-shadow: 0 2px 8px rgba(26, 43, 74, 0.06);
+  }
+
+  /* ── Logo Display ── */
+  .logo-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .logo-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+    border-radius: 8px;
+    border: 1px solid #e0e6ed;
+  }
+  .logo-box.light { background: #ffffff; }
+  .logo-box.dark { background: #1a2b4a; border-color: #1a2b4a; }
+  .logo-box svg { width: 64px; height: 64px; }
+  .logo-box .wordmark {
+    font-size: 28px;
+    font-weight: 700;
+    margin-left: 12px;
+    letter-spacing: -0.3px;
+  }
+  .logo-box.light .wordmark { color: #1a2b4a; }
+  .logo-box.dark .wordmark { color: #ffffff; }
+  .logo-label {
+    text-align: center;
+    font-size: 13px;
+    color: #8b9ba8;
+    margin-top: 8px;
+    font-weight: 500;
+  }
+
+  /* ── Do / Don't ── */
+  .dos-donts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .do-box, .dont-box {
+    border-radius: 8px;
+    padding: 24px;
+    border: 1px solid #e0e6ed;
+  }
+  .do-box { border-left: 4px solid #2ecc71; background: #f8fdf9; }
+  .dont-box { border-left: 4px solid #e74c3c; background: #fdf8f8; }
+  .do-box h4, .dont-box h4 { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
+  .do-box h4 { color: #27ae60; }
+  .dont-box h4 { color: #c0392b; }
+  .do-box ul, .dont-box ul { padding-left: 18px; }
+  .do-box li, .dont-box li { font-size: 14px; line-height: 1.8; list-style: disc; }
+
+  /* ── Typography Specimen ── */
+  .type-specimen { margin-top: 24px; }
+  .type-row {
+    display: flex;
+    align-items: baseline;
+    padding: 16px 0;
+    border-bottom: 1px solid #e0e6ed;
+  }
+  .type-label {
+    width: 120px;
+    flex-shrink: 0;
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    color: #8b9ba8;
+  }
+  .type-sample { flex: 1; }
+  .type-meta {
+    width: 200px;
+    flex-shrink: 0;
+    text-align: right;
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    color: #8b9ba8;
+  }
+
+  /* ── Button Spec ── */
+  .btn-demo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.25);
+    cursor: pointer;
+    letter-spacing: 0.01em;
+  }
+  .btn-demo-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0066cc;
+    background: transparent;
+    border: 1.5px solid #0066cc;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 16px;
+  }
+
+  /* ── Card Spec ── */
+  .card-demo {
+    border: 1px solid #e0e6ed;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(26, 43, 74, 0.06);
+    padding: 24px;
+    max-width: 360px;
+    margin-top: 16px;
+    background: #ffffff;
+  }
+  .card-demo h4 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .card-demo p { font-size: 14px; color: #8b9ba8; margin: 0; }
+
+  /* ── Spacing Viz ── */
+  .spacing-row { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; }
+  .spacing-block {
+    background: linear-gradient(135deg, #0066cc 0%, #004499 100%);
+    border-radius: 3px;
+    height: 24px;
+    opacity: 0.7;
+  }
+  .spacing-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    color: #8b9ba8;
+    width: 140px;
+    flex-shrink: 0;
+  }
+
+  /* ── Code Block ── */
+  .code-block {
+    background: #1a2b4a;
+    color: #ecf0f1;
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    padding: 20px 24px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-top: 16px;
+  }
+  .code-block .prop { color: #0066cc; }
+  .code-block .val { color: #2ecc71; }
+
+  /* ── TOC ── */
+  .toc {
+    background: #f8f9fb;
+    border: 1px solid #e0e6ed;
+    border-radius: 8px;
+    padding: 24px 32px;
+    margin-top: 24px;
+    display: inline-block;
+  }
+  .toc ol { padding-left: 20px; }
+  .toc li { margin-bottom: 6px; font-size: 15px; }
+  .toc a { color: #0066cc; text-decoration: none; }
+  .toc a:hover { color: #004499; text-decoration: underline; }
+
+  /* ── Footer ── */
+  .doc-footer {
+    text-align: center;
+    padding: 40px 0;
+    color: #8b9ba8;
+    font-size: 14px;
+  }
+
+  @media (max-width: 640px) {
+    .logo-display, .dos-donts { grid-template-columns: 1fr; }
+    .type-meta { display: none; }
+    .cover h1 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================ COVER ============================================ -->
+<div class="cover">
+  <div class="container">
+    <div class="logo-mark">
+      <svg width="72" height="72" viewBox="0 0 24 24" fill="none">
+        <path d="M6 8L12 4.5L18 8V14L12 17.5L6 14Z" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 12L14 8.5L20 12V18L14 21.5L8 18Z" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 14L10 10.5L16 14V20L10 23.5L4 20Z" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="12" cy="10.75" r="1.8" fill="#4d9fee" opacity="0.9"/>
+        <circle cx="14" cy="15" r="1.8" fill="#4d9fee" opacity="0.9"/>
+        <circle cx="10" cy="17" r="1.8" fill="#4d9fee" opacity="0.9"/>
+      </svg>
+    </div>
+    <h1>Tessera Brand Guidelines</h1>
+    <p>Standards Made Visible</p>
+  </div>
+</div>
+
+<!-- ============================================ TOC ============================================ -->
+<section>
+  <div class="container">
+    <h2>Contents</h2>
+    <nav class="toc">
+      <ol>
+        <li><a href="#logo">Logo</a></li>
+        <li><a href="#colors">Color Palette</a></li>
+        <li><a href="#gradients">Gradients</a></li>
+        <li><a href="#typography">Typography</a></li>
+        <li><a href="#components">Component Specs</a></li>
+        <li><a href="#spacing">Spacing &amp; Layout</a></li>
+        <li><a href="#usage">Usage Guidelines</a></li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<!-- ============================================ LOGO ============================================ -->
+<section id="logo">
+  <div class="container">
+    <h2>Logo</h2>
+    <p class="section-intro">The Tessera mark is composed of three interlocking hexagonal tiles with cobalt accent circles at their intersections, symbolizing compliance standards that fit together.</p>
+
+    <div class="logo-display">
+      <div>
+        <div class="logo-box light">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+            <path d="M6 8L12 4.5L18 8V14L12 17.5L6 14Z" stroke="#1a2b4a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 12L14 8.5L20 12V18L14 21.5L8 18Z" stroke="#1a2b4a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 14L10 10.5L16 14V20L10 23.5L4 20Z" stroke="#1a2b4a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="10.75" r="1.8" fill="#0066cc" opacity="0.8"/>
+            <circle cx="14" cy="15" r="1.8" fill="#0066cc" opacity="0.8"/>
+            <circle cx="10" cy="17" r="1.8" fill="#0066cc" opacity="0.8"/>
+          </svg>
+          <span class="wordmark">Tessera</span>
+        </div>
+        <div class="logo-label">Primary (light backgrounds)</div>
+      </div>
+      <div>
+        <div class="logo-box dark">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+            <path d="M6 8L12 4.5L18 8V14L12 17.5L6 14Z" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 12L14 8.5L20 12V18L14 21.5L8 18Z" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 14L10 10.5L16 14V20L10 23.5L4 20Z" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="10.75" r="1.8" fill="#4d9fee" opacity="0.9"/>
+            <circle cx="14" cy="15" r="1.8" fill="#4d9fee" opacity="0.9"/>
+            <circle cx="10" cy="17" r="1.8" fill="#4d9fee" opacity="0.9"/>
+          </svg>
+          <span class="wordmark">Tessera</span>
+        </div>
+        <div class="logo-label">Reversed (dark backgrounds)</div>
+      </div>
+    </div>
+
+    <h3>Clear Space &amp; Minimum Size</h3>
+    <p>Maintain a minimum clear space around the logo equal to the height of one cobalt circle (the "dot"). The logo should never be displayed smaller than 24px in height for the mark alone or 120px wide for the full lockup.</p>
+
+    <h3>Logo Do's and Don'ts</h3>
+    <div class="dos-donts">
+      <div class="do-box">
+        <h4>Do</h4>
+        <ul>
+          <li>Use the provided SVG files for all digital applications</li>
+          <li>Maintain the aspect ratio when scaling</li>
+          <li>Use the dark variant on backgrounds darker than #4a4a4a</li>
+          <li>Pair the mark with the "Tessera" wordmark in Inter 700</li>
+          <li>Ensure sufficient contrast against the background</li>
+          <li>Keep the clear space free of other elements</li>
+        </ul>
+      </div>
+      <div class="dont-box">
+        <h4>Don't</h4>
+        <ul>
+          <li>Stretch, rotate, or distort the logo</li>
+          <li>Change the stroke color of the hexagonal tiles</li>
+          <li>Replace the cobalt circles with a different color</li>
+          <li>Add effects like drop shadows or glows to the mark</li>
+          <li>Place the logo on busy or low-contrast backgrounds</li>
+          <li>Rearrange the mark and wordmark relationship</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ COLORS ============================================ -->
+<section id="colors">
+  <div class="container">
+    <h2>Color Palette</h2>
+    <p class="section-intro">Tessera's palette is built on three tiers: primary identity colors, semantic status colors, and supporting neutrals.</p>
+
+    <h3>Primary</h3>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #1a2b4a;"></div>
+        <div class="swatch-info"><div class="swatch-name">Navy</div><div class="swatch-hex">#1a2b4a</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #8b9ba8;"></div>
+        <div class="swatch-info"><div class="swatch-name">Limestone</div><div class="swatch-hex">#8b9ba8</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #0066cc;"></div>
+        <div class="swatch-info"><div class="swatch-name">Cobalt</div><div class="swatch-hex">#0066cc</div></div>
+      </div>
+    </div>
+
+    <h3>Semantic</h3>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #2ecc71;"></div>
+        <div class="swatch-info"><div class="swatch-name">Emerald</div><div class="swatch-hex">#2ecc71</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #f39c12;"></div>
+        <div class="swatch-info"><div class="swatch-name">Amber</div><div class="swatch-hex">#f39c12</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #e74c3c;"></div>
+        <div class="swatch-info"><div class="swatch-name">Crimson</div><div class="swatch-hex">#e74c3c</div></div>
+      </div>
+    </div>
+
+    <h3>Semantic Dark (Accessible)</h3>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #27ae60;"></div>
+        <div class="swatch-info"><div class="swatch-name">Emerald Dark</div><div class="swatch-hex">#27ae60</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #d68910;"></div>
+        <div class="swatch-info"><div class="swatch-name">Amber Dark</div><div class="swatch-hex">#d68910</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #c0392b;"></div>
+        <div class="swatch-info"><div class="swatch-name">Crimson Dark</div><div class="swatch-hex">#c0392b</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #004499;"></div>
+        <div class="swatch-info"><div class="swatch-name">Cobalt Dark</div><div class="swatch-hex">#004499</div></div>
+      </div>
+    </div>
+
+    <h3>Supporting / Neutral</h3>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background: #ecf0f1;"></div>
+        <div class="swatch-info"><div class="swatch-name">Fog</div><div class="swatch-hex">#ecf0f1</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #e0e6ed;"></div>
+        <div class="swatch-info"><div class="swatch-name">Border</div><div class="swatch-hex">#e0e6ed</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #f8f9fb;"></div>
+        <div class="swatch-info"><div class="swatch-name">Surface</div><div class="swatch-hex">#f8f9fb</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background: #ffffff; border: 1px solid #e0e6ed;"></div>
+        <div class="swatch-info"><div class="swatch-name">White</div><div class="swatch-hex">#ffffff</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ GRADIENTS ============================================ -->
+<section id="gradients">
+  <div class="container">
+    <h2>Gradients</h2>
+    <p class="section-intro">Gradients add depth and hierarchy. The Action gradient is used on primary buttons and CTAs.</p>
+
+    <div class="gradient-row">
+      <div class="gradient-swatch" style="background: linear-gradient(135deg, #0066cc 0%, #004499 100%);">
+        Action: #0066cc &rarr; #004499
+      </div>
+      <div class="gradient-swatch" style="background: linear-gradient(180deg, #1a2b4a 0%, #243545 100%);">
+        Foundation: #1a2b4a &rarr; #243545
+      </div>
+    </div>
+    <div class="gradient-row">
+      <div class="gradient-swatch" style="background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);">
+        Success: #2ecc71 &rarr; #27ae60
+      </div>
+      <div class="gradient-swatch" style="background: linear-gradient(135deg, #f39c12 0%, #d68910 100%);">
+        Warning: #f39c12 &rarr; #d68910
+      </div>
+      <div class="gradient-swatch" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
+        Critical: #e74c3c &rarr; #c0392b
+      </div>
+    </div>
+    <div class="gradient-row">
+      <div class="gradient-swatch" style="background: linear-gradient(180deg, #f8f9fb 0%, #ecf0f1 100%); color: #8b9ba8;">
+        Elevation: #f8f9fb &rarr; #ecf0f1
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ TYPOGRAPHY ============================================ -->
+<section id="typography">
+  <div class="container">
+    <h2>Typography</h2>
+    <p class="section-intro">Inter is the primary typeface for all UI and marketing materials. Fira Code is used for metrics, code, and monospaced contexts.</p>
+
+    <div class="type-specimen">
+      <div class="type-row">
+        <div class="type-label">H1</div>
+        <div class="type-sample" style="font-size: 48px; font-weight: 700; line-height: 1.2; letter-spacing: -0.5px;">Standards Made Visible</div>
+        <div class="type-meta">48px / 700 / -0.5px</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">H2</div>
+        <div class="type-sample" style="font-size: 36px; font-weight: 700; line-height: 1.3; letter-spacing: -0.3px;">Section Heading</div>
+        <div class="type-meta">36px / 700 / -0.3px</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">H3</div>
+        <div class="type-sample" style="font-size: 28px; font-weight: 600; line-height: 1.4;">Subsection Heading</div>
+        <div class="type-meta">28px / 600</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">H4</div>
+        <div class="type-sample" style="font-size: 20px; font-weight: 600; line-height: 1.4;">Card or Group Title</div>
+        <div class="type-meta">20px / 600</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Body</div>
+        <div class="type-sample" style="font-size: 16px; font-weight: 400; line-height: 1.6;">Tessera scans your website and maps findings to recognized compliance frameworks, giving you a clear picture of where you stand.</div>
+        <div class="type-meta">16px / 400 / 1.6</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Small</div>
+        <div class="type-sample" style="font-size: 14px; font-weight: 400; line-height: 1.5; color: #8b9ba8;">Supporting text and metadata</div>
+        <div class="type-meta">14px / 400 / 1.5</div>
+      </div>
+      <div class="type-row">
+        <div class="type-label">Mono</div>
+        <div class="type-sample" style="font-family: 'Fira Code', monospace; font-size: 14px; font-weight: 400;">score: 87 / 100 &mdash; WCAG 2.1 AA</div>
+        <div class="type-meta">Fira Code 14px</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ COMPONENTS ============================================ -->
+<section id="components">
+  <div class="container">
+    <h2>Component Specs</h2>
+    <p class="section-intro">Core UI building blocks and their exact specifications.</p>
+
+    <h3>Buttons</h3>
+    <p>Primary buttons use the Action gradient with 6px border radius and a cobalt shadow.</p>
+    <div style="margin-top: 16px; display: flex; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <button class="btn-demo">Free Scan</button>
+      <button class="btn-demo-outline">Learn More</button>
+    </div>
+    <div class="code-block" style="margin-top: 16px;">
+<span class="prop">border-radius</span>: <span class="val">6px</span>;
+<span class="prop">background</span>: <span class="val">linear-gradient(135deg, #0066cc 0%, #004499 100%)</span>;
+<span class="prop">box-shadow</span>: <span class="val">0 4px 12px rgba(0, 102, 204, 0.25)</span>;
+<span class="prop">font-weight</span>: <span class="val">600</span>;
+<span class="prop">font-size</span>: <span class="val">15px</span>;
+<span class="prop">padding</span>: <span class="val">12px 28px</span>;
+    </div>
+
+    <h3>Cards</h3>
+    <p>Cards use a subtle border, 8px radius, and a soft navy-tinted shadow.</p>
+    <div class="card-demo">
+      <h4>WCAG 2.1 Level AA</h4>
+      <p>12 of 14 criteria met. 2 items require attention before your next audit.</p>
+    </div>
+    <div class="code-block" style="margin-top: 16px;">
+<span class="prop">border</span>: <span class="val">1px solid #e0e6ed</span>;
+<span class="prop">border-radius</span>: <span class="val">8px</span>;
+<span class="prop">box-shadow</span>: <span class="val">0 2px 8px rgba(26, 43, 74, 0.06)</span>;
+<span class="prop">background</span>: <span class="val">#ffffff</span>;
+    </div>
+
+    <h3>Shadows</h3>
+    <div class="code-block">
+<span class="prop">--shadow-card</span>:  <span class="val">0 2px 8px rgba(26, 43, 74, 0.06)</span>;
+<span class="prop">--shadow-hover</span>: <span class="val">0 4px 16px rgba(26, 43, 74, 0.10)</span>;
+<span class="prop">--shadow-modal</span>: <span class="val">0 16px 48px rgba(26, 43, 74, 0.16)</span>;
+<span class="prop">--shadow-btn</span>:   <span class="val">0 4px 12px rgba(0, 102, 204, 0.25)</span>;
+    </div>
+  </div>
+</section>
+
+<!-- ============================================ SPACING ============================================ -->
+<section id="spacing">
+  <div class="container">
+    <h2>Spacing &amp; Layout</h2>
+    <p class="section-intro">All spacing is derived from a 4px base unit. Use multiples of 4 for consistency.</p>
+
+    <div style="margin-top: 24px;">
+      <div class="spacing-row">
+        <div class="spacing-label">sp-1 &middot; 4px</div>
+        <div class="spacing-block" style="width: 16px;"></div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">sp-2 &middot; 8px</div>
+        <div class="spacing-block" style="width: 32px;"></div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">sp-3 &middot; 12px</div>
+        <div class="spacing-block" style="width: 48px;"></div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">sp-4 &middot; 16px</div>
+        <div class="spacing-block" style="width: 64px;"></div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">sp-6 &middot; 24px</div>
+        <div class="spacing-block" style="width: 96px;"></div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">sp-8 &middot; 32px</div>
+        <div class="spacing-block" style="width: 128px;"></div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">sp-12 &middot; 48px</div>
+        <div class="spacing-block" style="width: 192px;"></div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">sp-16 &middot; 64px</div>
+        <div class="spacing-block" style="width: 256px;"></div>
+      </div>
+      <div class="spacing-row">
+        <div class="spacing-label">sp-24 &middot; 96px</div>
+        <div class="spacing-block" style="width: 384px;"></div>
+      </div>
+    </div>
+
+    <h3>Border Radii</h3>
+    <div class="code-block">
+<span class="prop">--r-sm</span>:   <span class="val">4px</span>   /* Tags, badges */
+<span class="prop">--r-md</span>:   <span class="val">6px</span>   /* Buttons */
+<span class="prop">--r-lg</span>:   <span class="val">8px</span>   /* Cards */
+<span class="prop">--r-xl</span>:   <span class="val">12px</span>  /* Modals, panels */
+<span class="prop">--r-full</span>: <span class="val">9999px</span> /* Pills, avatars */
+    </div>
+
+    <h3>Container</h3>
+    <p>Maximum content width: <strong>1120px</strong>, centered with 24px horizontal padding.</p>
+  </div>
+</section>
+
+<!-- ============================================ USAGE GUIDELINES ============================================ -->
+<section id="usage">
+  <div class="container">
+    <h2>Usage Guidelines</h2>
+    <p class="section-intro">General principles for applying the Tessera brand consistently.</p>
+
+    <h3>Color Usage</h3>
+    <ul style="padding-left: 20px; list-style: disc; margin-bottom: 24px;">
+      <li style="margin-bottom: 8px;"><strong>Navy</strong> is the primary text and background color for headers and footers.</li>
+      <li style="margin-bottom: 8px;"><strong>Cobalt</strong> is the primary action color: links, buttons, interactive highlights.</li>
+      <li style="margin-bottom: 8px;"><strong>Limestone</strong> is for secondary text, captions, and metadata.</li>
+      <li style="margin-bottom: 8px;"><strong>Emerald / Amber / Crimson</strong> are strictly for status: pass, warning, fail. Never use them decoratively.</li>
+      <li style="margin-bottom: 8px;"><strong>Fog / Surface</strong> are background tones for sections and panels. Use to create visual layering.</li>
+    </ul>
+
+    <h3>Voice &amp; Tone</h3>
+    <ul style="padding-left: 20px; list-style: disc; margin-bottom: 24px;">
+      <li style="margin-bottom: 8px;">Clear, direct, professional. No jargon unless the audience is technical.</li>
+      <li style="margin-bottom: 8px;">Confident but not aggressive. We illuminate compliance gaps, we don't scare.</li>
+      <li style="margin-bottom: 8px;">Action-oriented. Every headline should hint at what the user gains.</li>
+    </ul>
+
+    <h3>File Formats</h3>
+    <ul style="padding-left: 20px; list-style: disc;">
+      <li style="margin-bottom: 8px;">Use <strong>SVG</strong> for all logo and icon usage on the web.</li>
+      <li style="margin-bottom: 8px;">Use <strong>color-palette.css</strong> as the single source of truth for CSS custom properties.</li>
+      <li style="margin-bottom: 8px;">Reference this guidelines document for spacing, shadows, and component specifications.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================ FOOTER ============================================ -->
+<div class="doc-footer">
+  <div class="container">
+    Tessera Brand Guidelines &mdash; Version 1.0
+  </div>
+</div>
+
+</body>
+</html>

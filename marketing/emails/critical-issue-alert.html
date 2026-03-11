@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="x-apple-disable-message-reformatting">
+    <title>Critical compliance issue detected on {{site_url}}</title>
+    <!--[if mso]>
+    <noscript>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:AllowPNG/>
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    </noscript>
+    <![endif]-->
+    <style>
+        @media only screen and (max-width: 620px) {
+            .email-container { width: 100% !important; max-width: 100% !important; }
+            .fluid { max-width: 100% !important; height: auto !important; }
+            .stack-column { display: block !important; width: 100% !important; max-width: 100% !important; }
+            .padding-mobile { padding-left: 20px !important; padding-right: 20px !important; }
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; word-spacing: normal; background-color: #f4f6f9;">
+    <!-- Preheader -->
+    <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all;">
+        Action required: {{issue_title}} found on {{site_url}}. View details and remediation steps.
+    </div>
+
+    <center style="width: 100%; background-color: #f4f6f9;">
+        <!--[if mso | IE]>
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="width:600px;" align="center">
+        <tr><td>
+        <![endif]-->
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; max-width: 600px;" class="email-container">
+
+            <!-- Header -->
+            <tr>
+                <td style="padding: 30px 40px 20px 40px; text-align: center; background-color: #1a2b4a; border-radius: 8px 8px 0 0;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="text-align: left;">
+                                <span style="font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 24px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px;">Tessera</span>
+                            </td>
+                            <td style="text-align: right;">
+                                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #8899bb;">{{scan_timestamp}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Alert Banner -->
+            <tr>
+                <td style="padding: 0; background-color: #e74c3c;">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="padding: 16px 40px; text-align: center;" class="padding-mobile">
+                                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 1px;">&#9888; Critical Issue Detected</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Main Content -->
+            <tr>
+                <td style="padding: 36px 40px 20px 40px; background-color: #ffffff;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; color: #555555; line-height: 1.6; padding-bottom: 8px;">
+                                Hi {{user_name}},
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; color: #555555; line-height: 1.6; padding-bottom: 24px;">
+                                Our latest scan of <strong style="color: #1a2b4a;">{{site_url}}</strong> has identified a critical compliance issue that requires your immediate attention.
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Issue Card -->
+            <tr>
+                <td style="padding: 0 40px 24px 40px; background-color: #ffffff;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border: 1px solid #e0e6ed; border-radius: 8px; border-left: 4px solid #e74c3c;">
+                        <tr>
+                            <td style="padding: 24px;">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                    <!-- Severity Badge -->
+                                    <tr>
+                                        <td style="padding-bottom: 12px;">
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                                                <tr>
+                                                    <td style="background-color: #e74c3c; border-radius: 4px; padding: 4px 12px;">
+                                                        <span style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px;">Critical</span>
+                                                    </td>
+                                                    <td style="padding-left: 10px;">
+                                                        <span style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #999999;">{{issue_category}}</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- Issue Title -->
+                                    <tr>
+                                        <td style="font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 18px; font-weight: 700; color: #1a2b4a; padding-bottom: 10px;">
+                                            {{issue_title}}
+                                        </td>
+                                    </tr>
+                                    <!-- Issue Description -->
+                                    <tr>
+                                        <td style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #666666; line-height: 1.6; padding-bottom: 16px;">
+                                            {{issue_description}}
+                                        </td>
+                                    </tr>
+                                    <!-- Issue Details Table -->
+                                    <tr>
+                                        <td>
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fb; border-radius: 6px;">
+                                                <tr>
+                                                    <td style="padding: 14px 16px;">
+                                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                                            <tr>
+                                                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #999999; padding-bottom: 6px;">Affected Page</td>
+                                                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #1a2b4a; text-align: right; padding-bottom: 6px;">{{affected_page}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #999999; padding-bottom: 6px;">Standard</td>
+                                                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #1a2b4a; text-align: right; padding-bottom: 6px;">{{compliance_standard}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #999999;">First Detected</td>
+                                                                <td style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #1a2b4a; text-align: right;">{{first_detected}}</td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Recommendation -->
+            <tr>
+                <td style="padding: 0 40px 12px 40px; background-color: #ffffff;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #fef9e7; border: 1px solid #f39c12; border-radius: 8px;">
+                        <tr>
+                            <td style="padding: 16px 20px;">
+                                <span style="font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #1a2b4a;">Recommended Action:</span>
+                                <br>
+                                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #666666; line-height: 1.5;">{{recommended_action}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- CTA -->
+            <tr>
+                <td style="padding: 24px 40px 40px 40px; background-color: #ffffff; text-align: center;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto;">
+                        <tr>
+                            <td style="border-radius: 6px; background: linear-gradient(to bottom, #0066cc, #004499);" bgcolor="#0066cc">
+                                <!--[if mso]>
+                                <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{report_url}}" style="height:50px;v-text-anchor:middle;width:240px;" arcsize="12%" strokecolor="#004499" fillcolor="#0066cc">
+                                <w:anchorlock/>
+                                <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:16px;font-weight:bold;">View Full Report</center>
+                                </v:roundrect>
+                                <![endif]-->
+                                <!--[if !mso]><!-->
+                                <a href="{{report_url}}" target="_blank" style="background: linear-gradient(to bottom, #0066cc, #004499); border-radius: 6px; color: #ffffff; display: inline-block; font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; line-height: 50px; text-align: center; text-decoration: none; width: 240px; -webkit-text-size-adjust: none;">View Full Report</a>
+                                <!--<![endif]-->
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Divider -->
+            <tr>
+                <td style="padding: 0 40px; background-color: #ffffff;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="border-top: 1px solid #e0e6ed; font-size: 1px; line-height: 1px;">&nbsp;</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Alert Settings Note -->
+            <tr>
+                <td style="padding: 24px 40px 30px 40px; background-color: #ffffff; border-radius: 0 0 8px 8px;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #999999; text-align: center; line-height: 1.5;">
+                                You are receiving this alert because critical-level notifications are enabled for <strong>{{site_url}}</strong>.
+                                <br>
+                                <a href="{{alert_settings_url}}" style="color: #0066cc; text-decoration: underline;">Manage alert settings</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+                <td style="padding: 30px 40px; text-align: center;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #aaaaaa; line-height: 1.6; text-align: center;">
+                                <span style="font-family: 'Inter', Arial, Helvetica, sans-serif; font-weight: 700; color: #1a2b4a;">Tessera</span> &mdash; Standards Made Visible
+                                <br><br>
+                                <a href="{{unsubscribe_url}}" style="color: #0066cc; text-decoration: underline;">Unsubscribe</a> &nbsp;&middot;&nbsp; <a href="{{preferences_url}}" style="color: #0066cc; text-decoration: underline;">Email Preferences</a> &nbsp;&middot;&nbsp; <a href="{{privacy_url}}" style="color: #0066cc; text-decoration: underline;">Privacy Policy</a>
+                                <br><br>
+                                {{company_address}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+        </table>
+        <!--[if mso | IE]>
+        </td></tr></table>
+        <![endif]-->
+    </center>
+</body>
+</html>

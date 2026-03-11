@@ -1,0 +1,74 @@
+/* ============================================
+   TESSERA — Brand Color Palette
+   Exportable CSS Custom Properties
+   ============================================ */
+
+:root {
+  /* ── Primary Palette ── */
+  --tessera-navy:       #1a2b4a;
+  --tessera-limestone:  #8b9ba8;
+  --tessera-cobalt:     #0066cc;
+
+  /* ── Semantic Palette ── */
+  --tessera-emerald:    #2ecc71;
+  --tessera-amber:      #f39c12;
+  --tessera-crimson:    #e74c3c;
+
+  /* ── Semantic Dark (Accessible) ── */
+  --tessera-emerald-dark: #27ae60;
+  --tessera-amber-dark:   #d68910;
+  --tessera-crimson-dark: #c0392b;
+  --tessera-cobalt-dark:  #004499;
+
+  /* ── Supporting / Neutral ── */
+  --tessera-fog:        #ecf0f1;
+  --tessera-border:     #e0e6ed;
+  --tessera-surface:    #f8f9fb;
+  --tessera-white:      #ffffff;
+
+  /* ── Text Roles ── */
+  --tessera-text-primary:   var(--tessera-navy);
+  --tessera-text-secondary: var(--tessera-limestone);
+  --tessera-text-tertiary:  rgba(139, 155, 168, 0.7);
+  --tessera-text-accent:    var(--tessera-cobalt);
+  --tessera-text-inverse:   var(--tessera-white);
+
+  /* ── Gradients ── */
+  --tessera-grad-action:     linear-gradient(135deg, #0066cc 0%, #004499 100%);
+  --tessera-grad-foundation: linear-gradient(180deg, #1a2b4a 0%, #243545 100%);
+  --tessera-grad-elevation:  linear-gradient(180deg, #f8f9fb 0%, #ecf0f1 100%);
+  --tessera-grad-success:    linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+  --tessera-grad-warning:    linear-gradient(135deg, #f39c12 0%, #d68910 100%);
+  --tessera-grad-critical:   linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+
+  /* ── Typography ── */
+  --tessera-font-sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --tessera-font-mono:  'Fira Code', 'Courier New', monospace;
+
+  /* ── Shadows ── */
+  --tessera-shadow-card:  0 2px 8px rgba(26, 43, 74, 0.06);
+  --tessera-shadow-hover: 0 4px 16px rgba(26, 43, 74, 0.10);
+  --tessera-shadow-modal: 0 16px 48px rgba(26, 43, 74, 0.16);
+  --tessera-shadow-btn:   0 4px 12px rgba(0, 102, 204, 0.25);
+
+  /* ── Spacing (4px base unit) ── */
+  --tessera-sp-1:  4px;
+  --tessera-sp-2:  8px;
+  --tessera-sp-3:  12px;
+  --tessera-sp-4:  16px;
+  --tessera-sp-5:  20px;
+  --tessera-sp-6:  24px;
+  --tessera-sp-8:  32px;
+  --tessera-sp-10: 40px;
+  --tessera-sp-12: 48px;
+  --tessera-sp-16: 64px;
+  --tessera-sp-20: 80px;
+  --tessera-sp-24: 96px;
+
+  /* ── Border Radii ── */
+  --tessera-r-sm:   4px;
+  --tessera-r-md:   6px;   /* Buttons */
+  --tessera-r-lg:   8px;   /* Cards */
+  --tessera-r-xl:   12px;
+  --tessera-r-full: 9999px;
+}

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="x-apple-disable-message-reformatting">
+    <title>Your compliance report is ready — {{site_url}}</title>
+    <!--[if mso]>
+    <noscript>
+        <xml>
+            <o:OfficeDocumentSettings>
+                <o:AllowPNG/>
+                <o:PixelsPerInch>96</o:PixelsPerInch>
+            </o:OfficeDocumentSettings>
+        </xml>
+    </noscript>
+    <![endif]-->
+    <style>
+        @media only screen and (max-width: 620px) {
+            .email-container { width: 100% !important; max-width: 100% !important; }
+            .fluid { max-width: 100% !important; height: auto !important; }
+            .stack-column { display: block !important; width: 100% !important; max-width: 100% !important; }
+            .padding-mobile { padding-left: 20px !important; padding-right: 20px !important; }
+            .score-cell { display: block !important; width: 100% !important; padding-bottom: 12px !important; }
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; word-spacing: normal; background-color: #f4f6f9;">
+    <!-- Preheader -->
+    <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all;">
+        Your compliance score is {{overall_score}}/100 for {{site_url}}. View the full report with findings and remediation steps.
+    </div>
+
+    <center style="width: 100%; background-color: #f4f6f9;">
+        <!--[if mso | IE]>
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" style="width:600px;" align="center">
+        <tr><td>
+        <![endif]-->
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: 0 auto; max-width: 600px;" class="email-container">
+
+            <!-- Header -->
+            <tr>
+                <td style="padding: 30px 40px 20px 40px; text-align: center; background-color: #1a2b4a; border-radius: 8px 8px 0 0;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="text-align: left;">
+                                <span style="font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 24px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px;">Tessera</span>
+                            </td>
+                            <td style="text-align: right;">
+                                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #8899bb;">{{scan_timestamp}}</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Success Banner -->
+            <tr>
+                <td style="padding: 0; background-color: #2ecc71;">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="padding: 14px 40px; text-align: center;" class="padding-mobile">
+                                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px;">&#10003; Scan Complete</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Greeting -->
+            <tr>
+                <td style="padding: 32px 40px 8px 40px; background-color: #ffffff;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; color: #555555; line-height: 1.6;">
+                                Hi {{user_name}},
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; color: #555555; line-height: 1.6; padding-top: 8px;">
+                                Your compliance scan for <strong style="color: #1a2b4a;">{{site_url}}</strong> is ready. Here's a summary of what we found.
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Overall Score -->
+            <tr>
+                <td style="padding: 28px 40px 24px 40px; background-color: #ffffff;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="text-align: center;">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto;">
+                                    <tr>
+                                        <td style="width: 110px; height: 110px; border-radius: 50%; background-color: {{score_color}}; text-align: center; vertical-align: middle;" bgcolor="{{score_color}}">
+                                            <span style="font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 40px; font-weight: 700; color: #ffffff; line-height: 1;">{{overall_score}}</span>
+                                            <br>
+                                            <span style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: rgba(255,255,255,0.8); text-transform: uppercase; letter-spacing: 1px;">/ 100</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 12px; text-align: center;">
+                                <span style="font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; color: #1a2b4a;">Overall Compliance Score</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Category Breakdown -->
+            <tr>
+                <td style="padding: 0 40px 24px 40px; background-color: #ffffff;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fb; border-radius: 8px;">
+                        <tr>
+                            <td style="padding: 20px;">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                    <tr>
+                                        <td style="font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; color: #1a2b4a; padding-bottom: 16px;">Category Breakdown</td>
+                                    </tr>
+                                    <!-- Security Row -->
+                                    <tr>
+                                        <td style="padding-bottom: 12px;">
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                                <tr>
+                                                    <td style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #555555;">&#128274; Security</td>
+                                                    <td style="font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: {{security_color}}; text-align: right;">{{security_score}}/100</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="padding-top: 6px;">
+                                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #e0e6ed; border-radius: 4px; height: 6px;">
+                                                            <tr>
+                                                                <td style="width: {{security_score}}%; background-color: {{security_color}}; border-radius: 4px; height: 6px;" bgcolor="{{security_color}}"></td>
+                                                                <td style="height: 6px;"></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- Privacy Row -->
+                                    <tr>
+                                        <td style="padding-bottom: 12px;">
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                                <tr>
+                                                    <td style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #555555;">&#128065; Privacy</td>
+                                                    <td style="font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: {{privacy_color}}; text-align: right;">{{privacy_score}}/100</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="padding-top: 6px;">
+                                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #e0e6ed; border-radius: 4px; height: 6px;">
+                                                            <tr>
+                                                                <td style="width: {{privacy_score}}%; background-color: {{privacy_color}}; border-radius: 4px; height: 6px;" bgcolor="{{privacy_color}}"></td>
+                                                                <td style="height: 6px;"></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <!-- Accessibility Row -->
+                                    <tr>
+                                        <td>
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                                <tr>
+                                                    <td style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #555555;">&#9854; Accessibility</td>
+                                                    <td style="font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: {{accessibility_color}}; text-align: right;">{{accessibility_score}}/100</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="padding-top: 6px;">
+                                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #e0e6ed; border-radius: 4px; height: 6px;">
+                                                            <tr>
+                                                                <td style="width: {{accessibility_score}}%; background-color: {{accessibility_color}}; border-radius: 4px; height: 6px;" bgcolor="{{accessibility_color}}"></td>
+                                                                <td style="height: 6px;"></td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Top 3 Findings -->
+            <tr>
+                <td style="padding: 0 40px 8px 40px; background-color: #ffffff;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 700; color: #1a2b4a; padding-bottom: 12px;">
+                                Top Findings
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Finding 1 -->
+            <tr>
+                <td style="padding: 0 40px 10px 40px; background-color: #ffffff;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border: 1px solid #e0e6ed; border-radius: 8px; border-left: 4px solid {{finding_1_color}};">
+                        <tr>
+                            <td style="padding: 16px 18px;">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                    <tr>
+                                        <td>
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                                                <tr>
+                                                    <td style="background-color: {{finding_1_color}}; border-radius: 3px; padding: 2px 8px;">
+                                                        <span style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px;">{{finding_1_severity}}</span>
+                                                    </td>
+                                                    <td style="padding-left: 8px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #999999;">{{finding_1_category}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top: 8px; font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: #1a2b4a;">{{finding_1_title}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #666666; line-height: 1.5;">{{finding_1_description}}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Finding 2 -->
+            <tr>
+                <td style="padding: 0 40px 10px 40px; background-color: #ffffff;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border: 1px solid #e0e6ed; border-radius: 8px; border-left: 4px solid {{finding_2_color}};">
+                        <tr>
+                            <td style="padding: 16px 18px;">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                    <tr>
+                                        <td>
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                                                <tr>
+                                                    <td style="background-color: {{finding_2_color}}; border-radius: 3px; padding: 2px 8px;">
+                                                        <span style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px;">{{finding_2_severity}}</span>
+                                                    </td>
+                                                    <td style="padding-left: 8px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #999999;">{{finding_2_category}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top: 8px; font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: #1a2b4a;">{{finding_2_title}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #666666; line-height: 1.5;">{{finding_2_description}}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Finding 3 -->
+            <tr>
+                <td style="padding: 0 40px 24px 40px; background-color: #ffffff;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="border: 1px solid #e0e6ed; border-radius: 8px; border-left: 4px solid {{finding_3_color}};">
+                        <tr>
+                            <td style="padding: 16px 18px;">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                    <tr>
+                                        <td>
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                                                <tr>
+                                                    <td style="background-color: {{finding_3_color}}; border-radius: 3px; padding: 2px 8px;">
+                                                        <span style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px;">{{finding_3_severity}}</span>
+                                                    </td>
+                                                    <td style="padding-left: 8px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #999999;">{{finding_3_category}}</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top: 8px; font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 14px; font-weight: 700; color: #1a2b4a;">{{finding_3_title}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-top: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #666666; line-height: 1.5;">{{finding_3_description}}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Total Findings Count -->
+            <tr>
+                <td style="padding: 0 40px 24px 40px; background-color: #ffffff;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fb; border-radius: 8px;">
+                        <tr>
+                            <td style="padding: 16px 20px; text-align: center;">
+                                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #666666;">
+                                    <strong style="color: #1a2b4a;">{{total_findings}}</strong> total findings &mdash;
+                                    <span style="color: #e74c3c;">{{critical_count}} critical</span>,
+                                    <span style="color: #f39c12;">{{warning_count}} warnings</span>,
+                                    <span style="color: #0066cc;">{{info_count}} informational</span>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- CTA -->
+            <tr>
+                <td style="padding: 0 40px 40px 40px; background-color: #ffffff; text-align: center; border-radius: 0 0 8px 8px;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin: 0 auto;">
+                        <tr>
+                            <td style="border-radius: 6px; background: linear-gradient(to bottom, #0066cc, #004499);" bgcolor="#0066cc">
+                                <!--[if mso]>
+                                <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{report_url}}" style="height:50px;v-text-anchor:middle;width:240px;" arcsize="12%" strokecolor="#004499" fillcolor="#0066cc">
+                                <w:anchorlock/>
+                                <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:16px;font-weight:bold;">View Full Report</center>
+                                </v:roundrect>
+                                <![endif]-->
+                                <!--[if !mso]><!-->
+                                <a href="{{report_url}}" target="_blank" style="background: linear-gradient(to bottom, #0066cc, #004499); border-radius: 6px; color: #ffffff; display: inline-block; font-family: 'Inter', Arial, Helvetica, sans-serif; font-size: 16px; font-weight: 700; line-height: 50px; text-align: center; text-decoration: none; width: 240px; -webkit-text-size-adjust: none;">View Full Report</a>
+                                <!--<![endif]-->
+                            </td>
+                        </tr>
+                    </table>
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="padding-top: 14px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #999999; text-align: center;">
+                                Includes detailed remediation steps for every finding.
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+                <td style="padding: 30px 40px; text-align: center;" class="padding-mobile">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #aaaaaa; line-height: 1.6; text-align: center;">
+                                <span style="font-family: 'Inter', Arial, Helvetica, sans-serif; font-weight: 700; color: #1a2b4a;">Tessera</span> &mdash; Standards Made Visible
+                                <br><br>
+                                This scan was completed on {{scan_timestamp}} for {{site_url}}.
+                                <br>
+                                <a href="{{unsubscribe_url}}" style="color: #0066cc; text-decoration: underline;">Unsubscribe</a> &nbsp;&middot;&nbsp; <a href="{{preferences_url}}" style="color: #0066cc; text-decoration: underline;">Email Preferences</a> &nbsp;&middot;&nbsp; <a href="{{privacy_url}}" style="color: #0066cc; text-decoration: underline;">Privacy Policy</a>
+                                <br><br>
+                                {{company_address}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+        </table>
+        <!--[if mso | IE]>
+        </td></tr></table>
+        <![endif]-->
+    </center>
+</body>
+</html>

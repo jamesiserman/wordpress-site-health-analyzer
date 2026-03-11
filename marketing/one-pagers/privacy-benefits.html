@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tessera — Privacy &amp; GDPR Benefits</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1a2b4a; line-height: 1.6; max-width: 816px;
+    margin: 0 auto; padding: 48px; background: #fff;
+  }
+  .header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 40px; padding-bottom: 20px; border-bottom: 3px solid #f39c12;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-text { font-size: 28px; font-weight: 800; color: #1a2b4a; }
+  .badge { background: #f39c12; color: #fff; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .hero {
+    background: linear-gradient(135deg, #f39c12 0%, #d68910 100%);
+    color: #fff; padding: 36px; border-radius: 8px; margin-bottom: 32px;
+  }
+  .hero h1 { font-size: 30px; font-weight: 800; margin-bottom: 12px; line-height: 1.2; }
+  .hero p { font-size: 15px; opacity: 0.95; max-width: 520px; }
+
+  .alert-box { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 32px; }
+  .alert-stat { background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 20px; text-align: center; }
+  .alert-stat .num { font-size: 32px; font-weight: 800; color: #d68910; display: block; }
+  .alert-stat .label { font-size: 12px; color: #5a6b7d; font-weight: 500; }
+
+  h2 { font-size: 20px; font-weight: 700; margin-bottom: 16px; }
+  h2::before { content: ''; display: inline-block; width: 4px; height: 20px; background: #f39c12; border-radius: 2px; margin-right: 10px; vertical-align: text-bottom; }
+
+  .gdpr-checks { margin-bottom: 32px; }
+  .gdpr-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .gdpr-item {
+    padding: 18px; background: #f8f9fb; border-radius: 6px;
+    border: 1px solid #e0e6ed; border-left: 4px solid #f39c12;
+  }
+  .gdpr-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .gdpr-item p { font-size: 12px; color: #8b9ba8; line-height: 1.4; }
+
+  .tracker-section { margin-bottom: 32px; }
+  .tracker-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .tracker-card {
+    padding: 18px; border-radius: 8px; text-align: center;
+    border: 1px solid #e0e6ed;
+  }
+  .tracker-card .icon { font-size: 28px; margin-bottom: 8px; }
+  .tracker-card h4 { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+  .tracker-card p { font-size: 11px; color: #8b9ba8; }
+
+  .fines { margin-bottom: 32px; }
+  .fines-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .fines-table th { background: #1a2b4a; color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; }
+  .fines-table th:first-child { border-radius: 6px 0 0 0; }
+  .fines-table th:last-child { border-radius: 0 6px 0 0; }
+  .fines-table td { padding: 10px 14px; border-bottom: 1px solid #e0e6ed; }
+  .fines-table tr:nth-child(even) td { background: #f8f9fb; }
+  .fine-amount { color: #e74c3c; font-weight: 700; }
+
+  .benefits { margin-bottom: 32px; }
+  .benefit-list { list-style: none; }
+  .benefit-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #e0e6ed; }
+  .benefit-item:last-child { border-bottom: none; }
+  .benefit-check { color: #2ecc71; font-size: 18px; font-weight: 700; flex-shrink: 0; }
+  .benefit-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .benefit-item p { font-size: 12px; color: #8b9ba8; }
+
+  .cta {
+    background: #1a2b4a; color: #fff; padding: 28px 36px; border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;
+  }
+  .cta h3 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .cta p { font-size: 13px; opacity: 0.8; }
+  .cta-btn { background: linear-gradient(135deg, #0066cc, #004499); color: #fff; padding: 12px 28px; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; white-space: nowrap; }
+  .footer { text-align: center; font-size: 11px; color: #8b9ba8; padding-top: 16px; border-top: 1px solid #e0e6ed; }
+  .footer a { color: #0066cc; text-decoration: none; }
+  @media print { body { padding: 24px; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+      <path d="M6 8L12 4.5L18 8V14L12 17.5L6 14Z" stroke="#1a2b4a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M8 12L14 8.5L20 12V18L14 21.5L8 18Z" stroke="#1a2b4a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4 14L10 10.5L16 14V20L10 23.5L4 20Z" stroke="#1a2b4a" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="12" cy="10.75" r="1.8" fill="#0066cc" opacity="0.8"/>
+      <circle cx="14" cy="15" r="1.8" fill="#0066cc" opacity="0.8"/>
+      <circle cx="10" cy="17" r="1.8" fill="#0066cc" opacity="0.8"/>
+    </svg>
+    <span class="logo-text">Tessera</span>
+  </div>
+  <span class="badge">Privacy &amp; GDPR</span>
+</div>
+
+<div class="hero">
+  <h1>GDPR Compliance Without the Legal Complexity</h1>
+  <p>Tessera detects missing cookie consent, privacy policy gaps, and third-party trackers loading without user consent — before regulators do.</p>
+</div>
+
+<div class="alert-box">
+  <div class="alert-stat">
+    <span class="num">4%</span>
+    <span class="label">Max GDPR fine (% of revenue)</span>
+  </div>
+  <div class="alert-stat">
+    <span class="num">€1.2B</span>
+    <span class="label">GDPR fines issued in 2023</span>
+  </div>
+  <div class="alert-stat">
+    <span class="num">82%</span>
+    <span class="label">Sites with tracker issues</span>
+  </div>
+</div>
+
+<div class="gdpr-checks">
+  <h2>GDPR Compliance Checks</h2>
+  <div class="gdpr-grid">
+    <div class="gdpr-item">
+      <h4>Cookie Consent Banner</h4>
+      <p>Detects if a compliant cookie consent mechanism exists and blocks trackers before opt-in</p>
+    </div>
+    <div class="gdpr-item">
+      <h4>Privacy Policy</h4>
+      <p>Verifies presence and accessibility of a privacy policy page with required disclosures</p>
+    </div>
+    <div class="gdpr-item">
+      <h4>Third-Party Trackers</h4>
+      <p>Maps every analytics, advertising, and social tracker embedded in your pages</p>
+    </div>
+    <div class="gdpr-item">
+      <h4>Data Flow Analysis</h4>
+      <p>Identifies where user data flows — to which domains, countries, and third parties</p>
+    </div>
+    <div class="gdpr-item">
+      <h4>Pre-Consent Loading</h4>
+      <p>Flags trackers that fire before users have given explicit consent</p>
+    </div>
+    <div class="gdpr-item">
+      <h4>Cookie Classification</h4>
+      <p>Categorizes cookies as necessary, functional, analytics, or marketing</p>
+    </div>
+  </div>
+</div>
+
+<div class="tracker-section">
+  <h2>Tracker Types We Detect</h2>
+  <div class="tracker-grid">
+    <div class="tracker-card">
+      <div class="icon">📊</div>
+      <h4>Analytics</h4>
+      <p>Google Analytics, Plausible, Matomo, Hotjar, Mixpanel</p>
+    </div>
+    <div class="tracker-card">
+      <div class="icon">📢</div>
+      <h4>Advertising</h4>
+      <p>Google Ads, Meta Pixel, LinkedIn Insight, TikTok Pixel</p>
+    </div>
+    <div class="tracker-card">
+      <div class="icon">💬</div>
+      <h4>Social &amp; Widgets</h4>
+      <p>Facebook SDK, Twitter widgets, YouTube embeds, chat plugins</p>
+    </div>
+  </div>
+</div>
+
+<div class="fines">
+  <h2>Real GDPR Enforcement Actions</h2>
+  <table class="fines-table">
+    <tr><th>Company</th><th>Violation</th><th>Fine</th></tr>
+    <tr><td>Meta (Ireland)</td><td>Insufficient consent for data processing</td><td class="fine-amount">€1.2 billion</td></tr>
+    <tr><td>Amazon (Luxembourg)</td><td>Non-compliant advertising targeting</td><td class="fine-amount">€746 million</td></tr>
+    <tr><td>TikTok (Ireland)</td><td>Children's data processing violations</td><td class="fine-amount">€345 million</td></tr>
+    <tr><td>Criteo (France)</td><td>Tracking without valid consent</td><td class="fine-amount">€40 million</td></tr>
+    <tr><td>Small businesses</td><td>Missing cookie consent / privacy policy</td><td class="fine-amount">€10K — €250K</td></tr>
+  </table>
+</div>
+
+<div class="benefits">
+  <h2>Why Teams Choose Tessera for Privacy</h2>
+  <ul class="benefit-list">
+    <li class="benefit-item">
+      <span class="benefit-check">✓</span>
+      <div><h4>No Legal Expertise Required</h4><p>Plain-language findings with step-by-step remediation guidance</p></div>
+    </li>
+    <li class="benefit-item">
+      <span class="benefit-check">✓</span>
+      <div><h4>Continuous Monitoring</h4><p>Catch new trackers and consent issues as they appear, not months later</p></div>
+    </li>
+    <li class="benefit-item">
+      <span class="benefit-check">✓</span>
+      <div><h4>Audit-Ready Reports</h4><p>Generate compliance documentation for regulators, clients, and partners</p></div>
+    </li>
+    <li class="benefit-item">
+      <span class="benefit-check">✓</span>
+      <div><h4>Multi-Regulation Coverage</h4><p>GDPR, ePrivacy, CCPA/CPRA, and upcoming regulations in one scan</p></div>
+    </li>
+  </ul>
+</div>
+
+<div class="cta">
+  <div>
+    <h3>Is your website GDPR compliant?</h3>
+    <p>Free scan. No account required. Results in 60 seconds.</p>
+  </div>
+  <a href="https://wordpress-site-health-analyzer.pages.dev" class="cta-btn">Check Now Free &rarr;</a>
+</div>
+
+<div class="footer">
+  <p>&copy; 2026 Tessera. All rights reserved. | <a href="https://wordpress-site-health-analyzer.pages.dev">tessera.dev</a> | Standards Made Visible</p>
+</div>
+
+</body>
+</html>
