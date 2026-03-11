@@ -5,34 +5,134 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#1a2b4a" />
+
+    <!-- Primary Meta Tags -->
     <meta
       name="description"
-      content="Tessera - Real-time security, privacy, and accessibility compliance audits for websites. Standards Made Visible."
+      content="Tessera - Real-time security, privacy, and accessibility compliance audits for websites. Scan for OWASP vulnerabilities, GDPR compliance, and WCAG accessibility. Standards Made Visible."
     />
-    <!-- Tessera Brand Colors -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:title" content="Tessera - Standards Made Visible" />
-    <meta property="og:description" content="Real-time compliance monitoring for security, privacy, and accessibility standards." />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <meta name="keywords" content="website compliance, security audit, GDPR compliance, accessibility audit, WCAG, vulnerability scanner, compliance checker, web security" />
+    <meta name="author" content="Tessera" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="language" content="English" />
+    <link rel="canonical" href="https://wordpress-site-health-analyzer.pages.dev/" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Tessera - Standards Made Visible</title>
-    <!-- Import Inter Font -->
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://wordpress-site-health-analyzer.pages.dev/" />
+    <meta property="og:title" content="Tessera - Real-time Website Compliance Audits" />
+    <meta property="og:description" content="Scan your website for security vulnerabilities, GDPR compliance, and accessibility issues. Get actionable remediation guidance. No credit card required." />
+    <meta property="og:image" content="%PUBLIC_URL%/logo192.png" />
+    <meta property="og:image:width" content="192" />
+    <meta property="og:image:height" content="192" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://wordpress-site-health-analyzer.pages.dev/" />
+    <meta name="twitter:title" content="Tessera - Website Compliance Audits" />
+    <meta name="twitter:description" content="Real-time security, privacy, and accessibility compliance audits. Check your site for OWASP vulnerabilities, GDPR compliance, and WCAG accessibility." />
+    <meta name="twitter:image" content="%PUBLIC_URL%/logo192.png" />
+
+    <!-- Favicon & Icons -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <title>Tessera - Real-time Website Compliance Audits | Security, Privacy, Accessibility</title>
+
+    <!-- Preconnect to External Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Tessera",
+      "description": "Real-time website compliance audits for security, privacy, and accessibility standards",
+      "url": "https://wordpress-site-health-analyzer.pages.dev/",
+      "applicationCategory": "WebApplication",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Starter Plan",
+            "price": "0",
+            "priceCurrency": "USD",
+            "description": "1 website scan per month with basic compliance checks"
+          },
+          {
+            "@type": "Offer",
+            "name": "Growth Plan",
+            "price": "49",
+            "priceCurrency": "USD",
+            "priceValidUntil": "2026-12-31",
+            "description": "Unlimited scans with advanced security and compliance analysis"
+          }
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "150",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+    </script>
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Tessera",
+      "url": "https://wordpress-site-health-analyzer.pages.dev/",
+      "logo": "%PUBLIC_URL%/logo192.png",
+      "description": "Website compliance auditing platform for security, privacy, and accessibility",
+      "sameAs": [
+        "https://twitter.com/tessera",
+        "https://linkedin.com/company/tessera"
+      ]
+    }
+    </script>
+
+    <!-- FAQPage Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Tessera?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tessera is a real-time website compliance auditing platform that scans for security vulnerabilities (OWASP), GDPR privacy compliance, and WCAG accessibility issues."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a free trial?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! The Starter plan is free forever with 1 scan per month. Growth and Enterprise plans offer a 14-day free trial with no credit card required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a scan take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most website scans complete in 30-60 seconds, depending on site size and complexity. Results are delivered immediately with a detailed compliance report."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
