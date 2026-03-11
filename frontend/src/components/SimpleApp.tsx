@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ApiService } from '../services/api';
 import { AnalysisResult } from '../types/analysis';
 import { Header } from './Header';
@@ -7,11 +7,17 @@ import { ComplianceScore } from './ComplianceScore';
 import { FindingsSection } from './FindingsSection';
 import { Recommendations } from './Recommendations';
 import { AnalysisSummary } from './AnalysisSummary';
+import { initializeAnalytics, trackScanInitiated, trackScanCompleted } from '../utils/analytics';
 
 function SimpleApp() {
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Initialize analytics on component mount
+  useEffect(() => {
+    initializeAnalytics();
+  }, []);
 
   const normalizeUrl = (inputUrl: string): string => {
     let normalizedUrl = inputUrl.trim();
@@ -26,6 +32,11 @@ function SimpleApp() {
     if (!url.trim()) return;
 
     const normalizedUrl = normalizeUrl(url);
+    const startTime = Date.now();
+
+    // Track scan initiation
+    trackScanInitiated(normalizedUrl);
+
     setIsLoading(true);
     setError(null);
     setAnalysis(null);
@@ -34,6 +45,10 @@ function SimpleApp() {
       const result = await ApiService.analyzeWebsite(normalizedUrl);
       if (result && typeof result === 'object') {
         setAnalysis(result);
+
+        // Track scan completion
+        const duration = (Date.now() - startTime) / 1000; // Convert to seconds
+        trackScanCompleted(normalizedUrl, result.overallScore, duration);
       } else {
         setError('Invalid response format from server');
       }
