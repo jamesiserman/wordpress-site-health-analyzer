@@ -1475,6 +1475,162 @@ a:hover {
 }
 
 /* ============================================
+   RECOMMENDATIONS SECTION
+   ============================================ */
+
+.recommendations-section {
+  padding: 60px 0;
+}
+
+.recommendations-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.recommendations-header .section-title {
+  margin: 0;
+}
+
+.recommendations-count {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-crimson);
+  background: rgba(231, 76, 60, 0.1);
+  padding: 8px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.no-recommendations {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, rgba(46, 204, 113, 0.05) 0%, rgba(46, 204, 113, 0.02) 100%);
+  border: 2px dashed var(--color-emerald);
+  border-radius: 12px;
+}
+
+.no-rec-icon {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.no-rec-text {
+  font-size: 16px;
+  color: var(--color-emerald);
+  font-weight: 500;
+  margin: 0;
+}
+
+.recommendations-category {
+  margin-bottom: 40px;
+}
+
+.category-heading {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-navy);
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 8px;
+  border-left: 3px solid var(--color-cobalt);
+}
+
+.category-icon {
+  font-size: 20px;
+}
+
+.category-count {
+  font-size: 14px;
+  color: #999;
+  font-weight: 500;
+}
+
+.recommendations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.recommendation-card {
+  background: white;
+  border: 1px solid var(--color-limestone);
+  border-left: 4px solid;
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.recommendation-card:hover {
+  box-shadow: 0 4px 12px rgba(26, 43, 74, 0.12);
+  transform: translateX(4px);
+}
+
+.recommendation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.recommendation-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-navy);
+  margin: 0;
+  flex: 1;
+}
+
+.severity-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 12px;
+  color: white;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.recommendation-description {
+  font-size: 14px;
+  color: #555;
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+}
+
+.recommendation-action {
+  background: rgba(26, 43, 74, 0.02);
+  border: 1px solid var(--color-limestone);
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 12px;
+}
+
+.action-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-navy);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.action-text {
+  font-size: 13px;
+  color: #333;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ============================================
    DASHBOARD VIEW
    ============================================ */
 
@@ -1551,6 +1707,20 @@ a:hover {
   }
 
   .severity-badge {
+    align-self: flex-start;
+  }
+
+  .recommendations-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .recommendation-header {
+    flex-direction: column;
+  }
+
+  .severity-label {
     align-self: flex-start;
   }
 }

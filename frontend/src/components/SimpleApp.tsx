@@ -5,6 +5,7 @@ import { Header } from './Header';
 import { HeroSection } from './HeroSection';
 import { ComplianceScore } from './ComplianceScore';
 import { FindingsSection } from './FindingsSection';
+import { Recommendations } from './Recommendations';
 
 function SimpleApp() {
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
@@ -92,6 +93,8 @@ function SimpleApp() {
           />
 
           <FindingsSection analysis={analysis} />
+
+          <Recommendations recommendations={analysis.recommendations} />
 
           <button
             className="btn btn-secondary btn-large"
