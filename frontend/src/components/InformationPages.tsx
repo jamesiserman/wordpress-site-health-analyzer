@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface InfoPageProps {
   pageType: 'security' | 'privacy' | 'accessibility' | 'docs';
@@ -240,9 +241,9 @@ export function InformationPages({ pageType }: InfoPageProps) {
           <div className="cta-box">
             <h2>Ready to improve your {pageType === 'security' ? 'security' : pageType === 'privacy' ? 'privacy compliance' : pageType === 'accessibility' ? 'accessibility' : 'compliance'}?</h2>
             <p>Scan your website and get a detailed compliance report.</p>
-            <button className="btn btn-primary btn-large">
+            <Link to="/" className="btn btn-primary btn-large">
               Start Your Free Scan
-            </button>
+            </Link>
           </div>
         </div>
       </section>

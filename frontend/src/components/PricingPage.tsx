@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface PricingTier {
   name: string;
@@ -217,9 +218,9 @@ export function PricingPage() {
           <div className="cta-card">
             <h2>Ready to improve your compliance?</h2>
             <p>Start your free scan today. No credit card required.</p>
-            <button className="btn btn-primary btn-large">
+            <Link to="/" className="btn btn-primary btn-large">
               Scan Your Site Free
-            </button>
+            </Link>
           </div>
         </div>
       </section>

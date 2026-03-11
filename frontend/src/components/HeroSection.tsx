@@ -1,4 +1,5 @@
 import React, { useState, FormEvent, useRef } from 'react';
+import { Footer } from './Footer';
 
 interface HeroSectionProps {
   onAnalyze: (url: string) => void;
@@ -283,42 +284,7 @@ export function HeroSection({ onAnalyze, isLoading }: HeroSectionProps) {
         </div>
       </section>
 
-      {/* ────────── FOOTER ────────── */}
-      <footer className="tessera-footer" role="contentinfo">
-        <div className="container">
-          <div className="footer-grid">
-            <div className="footer-brand">
-              <span className="logo-wordmark" style={{ color: 'white', fontSize: '20px' }}>Tessera</span>
-              <p>
-                Real-time compliance audits for security, privacy, and
-                accessibility. Standards Made Visible.
-              </p>
-            </div>
-            <div className="footer-col">
-              <h4>Product</h4>
-              <a href="#features">Features</a>
-              <a href="#how-it-works">How It Works</a>
-              <a href="#pricing">Pricing</a>
-            </div>
-            <div className="footer-col">
-              <h4>Standards</h4>
-              <a href="#features">OWASP Security</a>
-              <a href="#features">GDPR Privacy</a>
-              <a href="#features">WCAG Accessibility</a>
-            </div>
-            <div className="footer-col">
-              <h4>Company</h4>
-              <a href="#docs">Documentation</a>
-              <a href="#docs">Support</a>
-              <a href="#docs">Privacy Policy</a>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <span>&copy; {new Date().getFullYear()} Tessera. All rights reserved.</span>
-            <span>Standards Made Visible</span>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }
