@@ -54,7 +54,6 @@ export function AnalysisSummary({ analysis }: AnalysisSummaryProps) {
   };
 
   const issues = countIssues();
-  const totalIssues = issues.critical + issues.warning + issues.low;
 
   return (
     <section className="analysis-summary">
