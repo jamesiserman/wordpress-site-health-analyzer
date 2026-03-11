@@ -6,6 +6,7 @@ import { HeroSection } from './HeroSection';
 import { ComplianceScore } from './ComplianceScore';
 import { FindingsSection } from './FindingsSection';
 import { Recommendations } from './Recommendations';
+import { AnalysisSummary } from './AnalysisSummary';
 
 function SimpleApp() {
   const [analysis, setAnalysis] = useState<AnalysisResult | null>(null);
@@ -85,6 +86,8 @@ function SimpleApp() {
         <HeroSection onAnalyze={handleAnalyze} isLoading={isLoading} />
       ) : (
         <div className="dashboard-view">
+          <AnalysisSummary analysis={analysis} />
+
           <ComplianceScore
             overallScore={calculateOverallScore()}
             securityScore={calculateSecurityScore()}

@@ -1475,6 +1475,156 @@ a:hover {
 }
 
 /* ============================================
+   ANALYSIS SUMMARY
+   ============================================ */
+
+.analysis-summary {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--color-limestone);
+}
+
+.summary-header {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.summary-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin: 0 0 12px 0;
+}
+
+.summary-url-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summary-url,
+.summary-timestamp {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.url-label,
+.timestamp-label {
+  font-weight: 600;
+  color: var(--color-navy);
+  min-width: 60px;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.url-value,
+.timestamp-value {
+  font-family: 'Courier New', monospace;
+  color: #555;
+}
+
+.summary-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.metric-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: white;
+  border: 1px solid var(--color-limestone);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+  box-shadow: 0 2px 8px rgba(26, 43, 74, 0.1);
+  border-color: var(--color-cobalt);
+}
+
+.metric-icon {
+  font-size: 28px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26, 43, 74, 0.05);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.metric-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.metric-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 4px 0;
+}
+
+.metric-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-navy);
+  margin: 0;
+}
+
+.metric-sublabel {
+  font-size: 12px;
+  color: #999;
+  margin: 4px 0 0 0;
+}
+
+.summary-quick-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, rgba(46, 204, 113, 0.05) 100%);
+  border: 1px dashed var(--color-cobalt);
+  border-radius: 8px;
+}
+
+.quick-stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.stat-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.stat-label {
+  color: var(--color-navy);
+  font-weight: 600;
+}
+
+.stat-value {
+  color: var(--color-cobalt);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* ============================================
    RECOMMENDATIONS SECTION
    ============================================ */
 
@@ -1722,6 +1872,25 @@ a:hover {
 
   .severity-label {
     align-self: flex-start;
+  }
+
+  .summary-header {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .summary-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-quick-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-url,
+  .summary-timestamp {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
