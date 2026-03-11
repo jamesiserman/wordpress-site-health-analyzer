@@ -1,20 +1,41 @@
-/* Apple-inspired Design System */
+/* Tessera Design System - Standards Made Visible */
 * {
   box-sizing: border-box;
 }
 
+:root {
+  /* Primary Colors */
+  --color-navy: #1a2b4a;
+  --color-limestone: #8b9ba8;
+  --color-cobalt: #0066cc;
+
+  /* Semantic Colors */
+  --color-success: #2ecc71;
+  --color-warning: #f39c12;
+  --color-critical: #e74c3c;
+  --color-neutral: #ecf0f1;
+
+  /* Neutral Palette */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-fog: #ecf0f1;
+  --color-border: #e0e6ed;
+  --color-text-secondary: #8b9ba8;
+  --color-text-tertiary: #aab8c2;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #ffffff;
-  color: #000000;
-  line-height: 1.5;
+  color: var(--color-navy);
+  line-height: 1.6;
 }
 
 code {
-  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-family: 'Fira Code', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
 }
 
 /* Layout */
@@ -26,73 +47,74 @@ code {
 
 /* Typography */
 .display-large {
-  font-size: 76px;
+  font-size: 48px;
   font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -0.025em;
-  color: #000000;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--color-navy);
 }
 
 .display-medium {
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.022em;
-  color: #000000;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+  color: var(--color-navy);
 }
 
 .headline-large {
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1.125;
-  letter-spacing: -0.019em;
-  color: #000000;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0px;
+  color: var(--color-navy);
 }
 
 .headline-medium {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
-  line-height: 1.17;
-  letter-spacing: -0.016em;
-  color: #000000;
+  line-height: 1.4;
+  letter-spacing: 0px;
+  color: var(--color-navy);
 }
 
 .body-large {
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 1.42;
-  letter-spacing: -0.012em;
-  color: #1d1d1f;
+  line-height: 1.6;
+  letter-spacing: 0px;
+  color: var(--color-navy);
 }
 
 .body-medium {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 1.47;
-  letter-spacing: -0.011em;
-  color: #1d1d1f;
+  line-height: 1.6;
+  letter-spacing: 0px;
+  color: var(--color-navy);
 }
 
 .body-small {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 1.47;
-  letter-spacing: -0.009em;
-  color: #86868b;
+  line-height: 1.5;
+  letter-spacing: 0.2px;
+  color: var(--color-text-secondary);
 }
 
 /* Cards */
 .card {
   background: #ffffff;
-  border: 1px solid #d2d2d7;
-  border-radius: 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(26, 43, 74, 0.06);
 }
 
 .card:hover {
-  border-color: #000000;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-cobalt);
+  box-shadow: 0 4px 16px rgba(26, 43, 74, 0.12);
   transform: translateY(-2px);
 }
 
@@ -116,42 +138,55 @@ code {
   padding: 32px;
 }
 
-/* Buttons - Apple Style */
+/* Buttons - Tessera Style */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   padding: 12px 24px;
   border: none;
-  border-radius: 980px;
-  font-size: 17px;
-  font-weight: 500;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 200ms cubic-bezier(0.0, 0, 0.2, 1);
   min-height: 48px;
-  letter-spacing: -0.011em;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 
 .btn-primary {
-  background: #000000;
+  background: linear-gradient(135deg, var(--color-cobalt) 0%, #004499 100%);
   color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
 }
 
 .btn-primary:hover {
-  background: #1d1d1f;
-  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 102, 204, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.2);
+}
+
+.btn-primary:focus {
+  outline-color: rgba(0, 102, 204, 0.5);
 }
 
 .btn-secondary {
-  background: #f5f5f7;
-  color: #000000;
-  border: 1px solid #d2d2d7;
+  background: transparent;
+  color: var(--color-cobalt);
+  border: 2px solid var(--color-cobalt);
+  padding: 10px 22px;
 }
 
 .btn-secondary:hover {
-  background: #e8e8ed;
-  transform: translateY(-1px);
+  background: rgba(0, 102, 204, 0.08);
+  border-color: #004499;
 }
 
 .btn-large {
@@ -163,21 +198,29 @@ code {
 /* Input Fields */
 .input {
   width: 100%;
-  padding: 16px 20px;
-  border: 1px solid #d2d2d7;
-  border-radius: 12px;
-  font-size: 17px;
+  padding: 12px 16px;
+  border: 2px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 16px;
   font-weight: 400;
   background: #ffffff;
-  color: #000000;
-  transition: all 0.2s ease;
-  letter-spacing: -0.011em;
+  color: var(--color-navy);
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Inter', sans-serif;
 }
 
 .input:focus {
   outline: none;
-  border-color: #000000;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+  border-color: var(--color-cobalt);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.input:hover {
+  border-color: var(--color-text-secondary);
+}
+
+.input::placeholder {
+  color: var(--color-text-secondary);
 }
 
 .input::placeholder {
@@ -544,4 +587,97 @@ code {
   color: #86868b;
   font-size: 15px;
   line-height: 1.4;
+}
+
+/* Tessera Color System - Badges & Status */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.badge-success {
+  background: #d5f4e6;
+  color: #1a4d3e;
+}
+
+.badge-warning {
+  background: #fef3cd;
+  color: #664d00;
+}
+
+.badge-critical {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.badge-neutral {
+  background: #ecf0f1;
+  color: #5a6f84;
+}
+
+/* Score Colors - Tessera */
+.score-excellent {
+  color: var(--color-success);
+}
+
+.score-good {
+  color: var(--color-warning);
+}
+
+.score-poor {
+  color: var(--color-critical);
+}
+
+/* Progress Bar - Tessera Colors */
+.progress {
+  width: 100%;
+  height: 8px;
+  background: var(--color-fog);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-cobalt) 0%, #004499 100%);
+  border-radius: 4px;
+  transition: width 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-bar.security {
+  background: linear-gradient(90deg, var(--color-cobalt) 0%, #004499 100%);
+}
+
+.progress-bar.gdpr {
+  background: linear-gradient(90deg, var(--color-warning) 0%, #e67e22 100%);
+}
+
+.progress-bar.accessibility {
+  background: linear-gradient(90deg, var(--color-success) 0%, #27ae60 100%);
+}
+
+/* Links */
+a {
+  color: var(--color-cobalt);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+a:hover {
+  color: #004499;
+  text-decoration: underline;
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: 2px solid var(--color-cobalt);
+  outline-offset: 2px;
 }
