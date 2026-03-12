@@ -28,13 +28,13 @@ export function Footer() {
           <div className="footer-col">
             <h4>Company</h4>
             <Link to="/docs">Documentation</Link>
-            <Link to="/docs">Support</Link>
-            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/terms">Terms of Service</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link>
           </div>
         </div>
         <div className="footer-bottom">
           <span>&copy; {new Date().getFullYear()} Tessera. All rights reserved.</span>
-          <span>Standards Made Visible</span>
+          <span><Link to="/terms" style={{ color: 'inherit', textDecoration: 'none' }}>Terms</Link> &middot; <Link to="/privacy-policy" style={{ color: 'inherit', textDecoration: 'none' }}>Privacy</Link></span>
         </div>
       </div>
     </footer>

@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SimpleApp from './components/SimpleApp';
 import { PricingPage } from './components/PricingPage';
 import { InformationPages } from './components/InformationPages';
+import { LegalPages } from './components/LegalPages';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 
@@ -16,6 +17,8 @@ function App() {
         <Route path="/privacy" element={<PageShell><InformationPages pageType="privacy" /></PageShell>} />
         <Route path="/accessibility" element={<PageShell><InformationPages pageType="accessibility" /></PageShell>} />
         <Route path="/docs" element={<PageShell><InformationPages pageType="docs" /></PageShell>} />
+        <Route path="/terms" element={<PageShell><LegalPages pageType="terms" /></PageShell>} />
+        <Route path="/privacy-policy" element={<PageShell><LegalPages pageType="privacy-policy" /></PageShell>} />
       </Routes>
     </BrowserRouter>
   );
