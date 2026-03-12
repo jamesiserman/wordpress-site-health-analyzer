@@ -11,7 +11,7 @@ Disallow: /private/
 Disallow: /temp/
 
 # Sitemap location
-Sitemap: https://wordpress-site-health-analyzer.pages.dev/sitemap.xml
+Sitemap: https://inspect-my-site.com/sitemap.xml
 
 # Crawl delay (in seconds)
 Crawl-delay: 1

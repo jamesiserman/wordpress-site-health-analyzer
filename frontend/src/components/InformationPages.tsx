@@ -148,7 +148,7 @@ export function InformationPages({ pageType }: InfoPageProps) {
               heading: 'Getting Started',
               content: 'Start using Tessera in minutes:',
               items: [
-                'Visit tessera.dev and sign up for a free account',
+                'Visit inspect-my-site.com and sign up for a free account',
                 'Enter your website URL in the dashboard',
                 'Tessera will scan your site in 30-60 seconds',
                 'Review your compliance score and findings',

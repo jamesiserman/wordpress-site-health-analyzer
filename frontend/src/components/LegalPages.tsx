@@ -34,7 +34,7 @@ export function LegalPages({ pageType }: LegalPageProps) {
         <div className="container">
           <div className="cta-box">
             <h2>Questions about our policies?</h2>
-            <p>Contact us at support@tessera.dev</p>
+            <p>Contact us at support@inspect-my-site.com</p>
             <Link to="/" className="btn btn-primary btn-large">
               Back to Home
             </Link>
@@ -108,7 +108,7 @@ const termsContent = {
     {
       heading: '10. Contact',
       paragraphs: [
-        'For questions about these Terms, contact us at legal@tessera.dev.',
+        'For questions about these Terms, contact us at legal@inspect-my-site.com.',
       ],
     },
   ],
@@ -156,7 +156,7 @@ const privacyContent = {
       heading: '6. Your Rights (GDPR)',
       paragraphs: [
         'If you are in the European Economic Area, you have the right to: (a) access your personal data; (b) rectify inaccurate data; (c) request erasure of your data; (d) restrict processing; (e) data portability; (f) object to processing; (g) withdraw consent at any time.',
-        'To exercise these rights, contact us at privacy@tessera.dev. We will respond within 30 days.',
+        'To exercise these rights, contact us at privacy@inspect-my-site.com. We will respond within 30 days.',
       ],
     },
     {
@@ -193,7 +193,7 @@ const privacyContent = {
     {
       heading: '12. Contact Us',
       paragraphs: [
-        'For privacy-related inquiries: privacy@tessera.dev. Data Protection Officer: dpo@tessera.dev. Postal address: Tessera, [Address to be added].',
+        'For privacy-related inquiries: privacy@inspect-my-site.com. Data Protection Officer: dpo@inspect-my-site.com. Postal address: Tessera, [Address to be added].',
       ],
     },
   ],
