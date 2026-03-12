@@ -1,73 +1,119 @@
 # Tessera — 30-Day Social Media Content Calendar
 
-**Platform Focus:** LinkedIn (primary), Twitter/X (secondary)
+**Platform Focus:** LinkedIn (primary), Twitter/X (secondary), Hacker News + Reddit + Dev.to (launch week)
 **Posting Cadence:** 1 post/day, 5 days/week
 **Tone:** Professional, educational, slightly urgent
 **Hashtags:** #WebCompliance #GDPR #WCAG #WebSecurity #DigitalAccessibility #Tessera
+**Budget:** €0 — all organic. Content created in-house.
 
 ---
 
-## Week 1: Problem Awareness
+## Pre-Launch (Week 0): Build Anticipation
 
-### Day 1 (Mon) — Launch Post
-**Type:** Announcement
+### Day -3 — Teaser
 **Platform:** LinkedIn + Twitter
-> Introducing Tessera — the compliance monitoring platform that scans your website for security vulnerabilities, GDPR privacy gaps, and WCAG accessibility issues in 60 seconds.
+> We've been building something for 3 weeks.
 >
-> No account. No credit card. Just paste your URL.
+> It scans your website for security vulnerabilities, GDPR violations, and accessibility failures — in 60 seconds.
 >
-> Try it free: [link]
+> The basic scan is free. The deep AI-powered pentest? €1.
 >
-> #WebCompliance #Tessera
+> Launching this week.
+>
+> #WebSecurity #GDPR #Tessera
 
-### Day 2 (Tue) — Security Stat
-**Type:** Statistic + CTA
-> The average data breach costs $4.45M (IBM, 2023).
+### Day -2 — Problem Statement
+**Platform:** LinkedIn
+> 43% of cyberattacks target small businesses.
+> 60% of those businesses close within 6 months.
 >
-> 73% of websites are missing critical security headers right now.
+> Meanwhile, the cheapest professional pentest costs €2,000+.
 >
-> Is yours one of them? Find out in 60 seconds: [link]
+> We thought: what if anyone could get a real security audit for €1?
 >
-> #WebSecurity #CyberSecurity
+> That's what we built. Launching tomorrow.
 
-### Day 3 (Wed) — GDPR Warning
-**Type:** Educational
-> GDPR regulators issued over €1.2 billion in fines in 2023 alone.
->
-> The most common violations?
-> - Tracking without consent
-> - Missing privacy policies
-> - Cookies loading before opt-in
->
-> These are things any website can fix. First step: know where you stand.
->
-> Free privacy scan: [link]
+### Day -1 — Product Hunt / HN Prep
+**Action:** Prepare Product Hunt listing + Show HN draft. Schedule for Tuesday 12:01 AM PT.
 
-### Day 4 (Thu) — Accessibility Stat
-**Type:** Statistic
-> 97% of home pages have WCAG accessibility failures.
->
-> That means 97 out of 100 websites are excluding users with disabilities — and exposing themselves to legal action under ADA and the European Accessibility Act.
->
-> Check your site in 60 seconds: [link]
->
-> #WCAG #DigitalAccessibility
+---
 
-### Day 5 (Fri) — The 3-in-1 Problem
-**Type:** Thought leadership
-> Most businesses check security OR privacy OR accessibility.
+## Week 1: Launch Week
+
+### Day 1 (Tue) — Launch Post
+**Type:** Announcement
+**Platform:** LinkedIn + Twitter + Product Hunt + Show HN + Reddit r/webdev + Dev.to
+> Tessera is live.
 >
-> But compliance doesn't work in silos. A secure site that violates GDPR is still non-compliant. An accessible site with tracking issues still fails.
+> Free website compliance scan: security, GDPR, accessibility — 60 seconds.
+> Full AI-powered penetration test: €1.
 >
-> That's why we built Tessera: 3 standards, 1 scan, complete clarity.
+> No subscriptions required. No upsell walls. Just paste your URL.
+>
+> We built this because NIS2 just brought millions of EU businesses into mandatory compliance scope — and existing tools start at €100/mo.
+>
+> Try it: [link]
+>
+> #WebCompliance #Tessera #NIS2
+
+**Hacker News version:**
+> Show HN: Tessera — AI-powered website pentest for €1
+>
+> Free scan checks security headers, SSL, GDPR trackers, and WCAG accessibility.
+> Register + pay €1 to unlock a full pentest (nmap, nuclei, nikto, SSL deep analysis, DNS, technology fingerprinting).
+>
+> Built on Cloudflare Workers + a VPS running Claude Code with pentest tools.
+> Report delivered as PDF within 15 minutes.
 >
 > [link]
+
+**Dev.to article title:** "I built an AI-powered website pentester that costs €1 — here's how"
+
+### Day 2 (Wed) — The €1 Angle
+**Type:** Thought leadership
+> A professional penetration test costs €5,000–€50,000.
+>
+> Our AI agent runs nmap, nuclei, nikto, sslyze, and 10+ other tools on your site for €1.
+>
+> Is it the same as a human pentester? No.
+> Is it better than the nothing that 95% of small businesses currently have? Absolutely.
+>
+> The first step to security is knowing where you stand.
+>
+> [link]
+
+### Day 3 (Thu) — NIS2 Urgency
+**Type:** Educational + CTA
+> NIS2 is now in effect across the EU.
+>
+> If your business handles any of these: energy, transport, health, digital infrastructure, manufacturing, food, chemicals, or digital services...
+>
+> You're now legally required to assess your cybersecurity posture.
+>
+> Penalties: €10M or 2% of global revenue.
+>
+> Start with a free scan: [link]
+>
+> #NIS2 #CyberSecurity #EUCompliance
+
+### Day 4 (Fri) — Results Showcase
+**Type:** Social proof
+> First 48 hours of Tessera:
+>
+> [X] websites scanned
+> [X] vulnerabilities found
+> [X] deep pentests completed
+> Average compliance score: [X]%
+>
+> Most common finding: missing Content-Security-Policy header (blocks XSS attacks, takes 5 minutes to add).
+>
+> What's your score? [link]
 
 ---
 
 ## Week 2: Education & How-To
 
-### Day 6 (Mon) — Security Headers 101
+### Day 5 (Mon) — Security Headers 101
 **Type:** Carousel / Thread
 > Your website should have these 7 security headers:
 >
@@ -81,154 +127,175 @@
 >
 > How many does your site have? Scan free: [link]
 
-### Day 7 (Tue) — Cookie Consent Checklist
+### Day 6 (Tue) — GDPR Fine Tracker
+**Type:** Statistic + CTA
+> GDPR enforcement in 2025: €1.2 billion in fines. 400+ breach notifications per day (up 22% from last year).
+>
+> The most common violations:
+> - Tracking without consent
+> - Missing privacy policies
+> - Cookies loading before opt-in
+>
+> These are fixable. First step: know where you stand.
+>
+> Free privacy scan: [link]
+
+### Day 7 (Wed) — Cookie Consent Checklist
 **Type:** Checklist
 > GDPR Cookie Consent Checklist:
 >
-> ☐ Banner appears before non-essential cookies load
-> ☐ Users can accept or reject all
-> ☐ Granular category selection available
-> ☐ Easy to withdraw consent later
-> ☐ Cookie policy documents all cookies
+> [ ] Banner appears before non-essential cookies load
+> [ ] Users can accept or reject all
+> [ ] Granular category selection available
+> [ ] Easy to withdraw consent later
+> [ ] Cookie policy documents all cookies
 >
 > Missing any? You're at risk. Check now: [link]
 
-### Day 8 (Wed) — Alt Text Guide
-**Type:** Educational
-> Alt text is the #1 accessibility fix — and the most neglected.
->
-> Good alt text:
-> ✅ "Team of 5 developers reviewing code on a shared screen"
->
-> Bad alt text:
-> ❌ "image1.jpg"
-> ❌ "photo"
-> ❌ (no alt text at all)
->
-> 86% of websites have missing or inadequate alt text. Is yours one? [link]
-
-### Day 9 (Thu) — SSL Certificate Myths
-**Type:** Myth-busting
-> "We have HTTPS, so we're secure."
->
-> Not quite. HTTPS is step 1. But:
-> - Is your cert properly configured?
-> - Is the chain complete?
-> - When does it expire?
-> - Are you using modern TLS 1.3?
->
-> SSL validation is one of 20+ checks Tessera runs automatically.
->
-> [link]
-
-### Day 10 (Fri) — Why Compliance Matters
-**Type:** Thought leadership
-> Compliance isn't about checking boxes. It's about:
->
-> → Protecting your users' data
-> → Including everyone regardless of ability
-> → Defending against preventable attacks
-> → Building trust that converts visitors to customers
->
-> It starts with visibility. See where you stand: [link]
-
----
-
-## Week 3: Social Proof & Results
-
-### Day 11 (Mon) — By The Numbers
-**Type:** Stats showcase
-> Tessera by the numbers:
->
-> 📊 12,000+ websites scanned
-> 🔍 340,000+ issues identified
-> ⏱️ 60 seconds average scan time
-> 📋 3 compliance standards covered
->
-> Join thousands of teams making compliance visible.
->
-> [link]
-
-### Day 12 (Tue) — Before/After
-**Type:** Case study format
-> Before Tessera: "We had no idea our site was missing 4 critical security headers and loading 7 trackers before consent."
->
-> After Tessera: "Fixed everything in a weekend. Compliance score went from 42% to 91%."
->
-> What's your score? [link]
-
-### Day 13 (Wed) — Developer Love
-**Type:** Feature highlight
-> Built for developers who don't have time for 200-page audit reports:
->
-> ✅ Severity-ranked findings (fix critical first)
-> ✅ Step-by-step remediation guidance
-> ✅ Category scores (Security, Privacy, Accessibility)
-> ✅ One-click rescan to verify fixes
->
-> [link]
-
-### Day 14 (Thu) — Agency Use Case
-**Type:** Use case
-> Agency teams: stop doing manual compliance checks for every client site.
->
-> With Tessera Growth plan:
-> → Scan unlimited client sites
-> → Generate branded PDF reports
-> → Monitor continuously
-> → Prove compliance to clients
->
-> Start free: [link]
-
-### Day 15 (Fri) — EAA Deadline
+### Day 8 (Thu) — EU Accessibility Act
 **Type:** Urgency
 > The European Accessibility Act takes effect June 2025.
 >
 > If you sell digital products or services in the EU, your website MUST be accessible.
 >
-> Don't wait for enforcement. Find your accessibility gaps now: [link]
+> 97% of home pages have WCAG failures. Don't wait for enforcement.
+>
+> Find your accessibility gaps: [link]
 >
 > #EAA #DigitalAccessibility #WCAG
 
+### Day 9 (Fri) — Pricing Comparison
+**Type:** Value proposition
+> Professional website security tools:
+>
+> Sucuri: €185/yr
+> Intruder: €139/mo
+> Detectify: €110/mo
+> Acunetix: €1,800/yr
+> Manual pentest: €5,000–€50,000
+>
+> Tessera: Free scan + €1 deep pentest.
+>
+> We're not replacing enterprise tools. We're making security accessible to everyone.
+>
+> [link]
+
 ---
 
-## Week 4: Product Features & CTA
+## Week 3: Deep Dives & Use Cases
 
-### Day 16 (Mon) — Pricing Announcement
+### Day 10 (Mon) — What the €1 Pentest Includes
+**Type:** Feature deep-dive
+> What you get for €1:
+>
+> - Port scan (nmap top 1000 ports)
+> - SSL/TLS deep analysis (cert chain, protocols, cipher suites)
+> - Security header audit (all 7+ headers)
+> - Technology fingerprinting (CMS, frameworks, servers)
+> - Known vulnerability scan (CVE database)
+> - Web app vulnerability check
+> - GDPR deep analysis (cookies, trackers, consent, data flows)
+> - WCAG automated accessibility audit
+> - DNS/email security (SPF, DKIM, DMARC)
+> - WAF detection
+>
+> Delivered as a PDF report within 15 minutes.
+>
+> [link]
+
+### Day 11 (Tue) — Agency Use Case
+**Type:** Use case
+> Web agencies: stop doing manual compliance checks for every client site.
+>
+> With Tessera Protect (€29/mo):
+> - Scan up to 5 client domains
+> - Daily automated monitoring
+> - AI-powered remediation suggestions
+> - Branded PDF reports for clients
+> - Slack/webhook alerts
+>
+> Or start with a €1 one-off scan for each client. [link]
+
+### Day 12 (Wed) — E-Commerce / PCI
+**Type:** Educational
+> PCI-DSS 4.0.1 requires quarterly external vulnerability scans for ALL e-commerce sites.
+>
+> That's 12M+ online stores worldwide.
+>
+> Non-compliance penalty: $5,000–$100,000/month.
+>
+> A Tessera Monitor plan (€9/mo) runs weekly scans — exceeding the quarterly minimum — for less than a coffee per week.
+>
+> [link]
+
+### Day 13 (Thu) — Developer Story
+**Type:** Behind the scenes
+> How our AI pentest agent works:
+>
+> 1. Claude Code orchestrates the scan
+> 2. nmap, nuclei, nikto, sslyze run in parallel
+> 3. Results are analyzed by AI for false positive reduction
+> 4. Report generated in Markdown, converted to PDF
+> 5. Uploaded to Cloudflare R2, delivered by email
+>
+> Total time: ~10 minutes. Total cost to us: ~€0.20.
+>
+> That's why we can charge €1.
+>
+> #DevOps #AI #Automation
+
+### Day 14 (Fri) — Poll
+**Type:** Engagement
+> Poll: How often do you audit your website for security?
+>
+> A) Never
+> B) Once a year
+> C) Quarterly
+> D) Continuously
+>
+> (Most honest answer gets a free deep scan.)
+
+---
+
+## Week 4: Product Features & Conversion
+
+### Day 15 (Mon) — Pricing Announcement
 **Type:** Feature
-> Tessera Pricing — designed for every team size:
+> Tessera Pricing — designed for real budgets:
 >
-> 🆓 Starter: Free forever (1 scan/month)
-> 📈 Growth: $49/mo (unlimited scans, PDF reports)
-> 🏢 Enterprise: Custom (API, SSO, SLA)
+> Free: Instant compliance check (no account needed)
+> €1: Full AI-powered penetration test (one-time)
+> €9/mo: Weekly monitoring + email alerts
+> €29/mo: Daily scans + AI remediation + 5 domains
+> €79/mo: Continuous monitoring + API + white-label reports
 >
-> Start free, upgrade when you need more: [link]
+> Start free, pay only when you want depth: [link]
 
-### Day 17 (Tue) — Feature: Tracker Detection
+### Day 16 (Tue) — Feature: Tracker Detection
 **Type:** Deep dive
-> Did you know the average website loads 7+ third-party trackers?
+> The average website loads 7+ third-party trackers.
 >
 > Tessera maps every tracker: analytics, advertising, social widgets.
 >
-> And tells you which ones fire BEFORE user consent — a direct GDPR violation.
+> And tells you which ones fire BEFORE user consent — a direct GDPR violation worth up to €20M in fines.
 >
 > See your trackers: [link]
 
-### Day 18 (Wed) — Feature: Remediation Guides
+### Day 17 (Wed) — Feature: Remediation Guides
 **Type:** Feature highlight
 > Finding problems is easy. Fixing them is where most tools stop.
 >
-> Tessera gives you:
-> → What's wrong (specific finding)
-> → Why it matters (risk + regulation)
-> → How to fix it (step-by-step guide)
-> → Priority (critical → low)
+> Tessera's AI-powered reports give you:
+> - What's wrong (specific finding)
+> - Why it matters (risk + regulation)
+> - How to fix it (step-by-step guide)
+> - Priority (critical > low)
 >
 > Not a data dump. An action plan.
 >
 > [link]
 
-### Day 19 (Thu) — Quick Win
+### Day 18 (Thu) — Quick Win
 **Type:** Actionable tip
 > Quick compliance win you can do today:
 >
@@ -241,7 +308,7 @@
 >
 > Want to know what else you're missing? [link]
 
-### Day 20 (Fri) — Weekly Wrap CTA
+### Day 19 (Fri) — Weekly Wrap CTA
 **Type:** CTA
 > This week's question:
 >
@@ -255,20 +322,27 @@
 
 ---
 
-## Week 5-6: Themes (Rotate)
+## Week 5+: Recurring Themes (Rotate)
 
-### Ongoing Content Themes:
-1. **Monday:** Product updates / features
-2. **Tuesday:** Security tip or stat
-3. **Wednesday:** Privacy / GDPR education
-4. **Thursday:** Accessibility awareness
-5. **Friday:** CTA / engagement post
+### Schedule:
+1. **Monday:** Product updates / feature highlights / monitoring tier value
+2. **Tuesday:** Security tip or stat (NIS2, breach costs, header guides)
+3. **Wednesday:** Privacy / GDPR education (fines, trackers, consent)
+4. **Thursday:** Accessibility awareness (EAA, WCAG, inclusive design)
+5. **Friday:** CTA / engagement post (polls, quick wins, testimonials)
 
 ### Engagement Formats:
-- **Polls:** "How often do you audit your website for compliance?" (Never / Annually / Quarterly / Continuously)
-- **Questions:** "What's your biggest compliance challenge? Security, privacy, or accessibility?"
+- **Polls:** "How often do you audit your website?" / "What's your biggest compliance gap?"
 - **Threads:** Deep-dive into OWASP Top 10, WCAG criteria, GDPR articles
-- **Reposts:** Share relevant news (data breaches, GDPR fines, accessibility lawsuits) with Tessera commentary
+- **Reposts:** Share relevant news (data breaches, GDPR fines, NIS2 enforcement) with Tessera commentary
+- **Before/After:** Compliance score improvements from real users
+- **Quick wins:** One actionable security/privacy/accessibility tip per week
+
+### Community Channels (Ongoing):
+- **Reddit:** r/webdev, r/netsec, r/sysadmin, r/wordpress — participate authentically, share tool when relevant
+- **Dev.to / Hashnode:** Monthly technical article about security/compliance
+- **LinkedIn:** Daily post + comment engagement on NIS2/GDPR/security threads
+- **Hacker News:** Participate in security discussions, reference tool naturally
 
 ---
 
@@ -279,9 +353,24 @@
 - #Tessera
 
 ### Category-specific:
-- Security: #CyberSecurity #WebSecurity #OWASP #InfoSec #AppSec
-- Privacy: #GDPR #DataPrivacy #CookieConsent #ePrivacy #CCPA
+- Security: #CyberSecurity #WebSecurity #OWASP #InfoSec #AppSec #NIS2
+- Privacy: #GDPR #DataPrivacy #CookieConsent #ePrivacy
 - Accessibility: #WCAG #a11y #DigitalAccessibility #WebAccessibility #EAA
 
 ### Engagement:
-- #DevOps #WebDev #Frontend #TechTwitter #StartupLife
+- #DevOps #WebDev #Frontend #SaaS #StartupLife #SmallBusiness
+
+---
+
+## Budget Allocation (€100/mo total)
+
+| Channel | Monthly | Notes |
+|---------|---------|-------|
+| Content/SEO | €0 | Created in-house |
+| Google Ads (retargeting only) | €50 | Target visitors who scanned but didn't register |
+| LinkedIn micro-campaigns | €50 | Target CTOs, web devs, agency owners in DACH |
+| Product Hunt | €0 | Free listing |
+| Hacker News | €0 | Free submission |
+| Reddit / Dev.to | €0 | Organic community participation |
+
+**All revenue reinvested into marketing for months 1–5.**
